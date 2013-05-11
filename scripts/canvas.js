@@ -1,5 +1,5 @@
 requirejs.config({
-  baseUrl: "resources/js/modules"
+  baseUrl: "scripts/modules"
 });
 
 requirejs(["shape"],
