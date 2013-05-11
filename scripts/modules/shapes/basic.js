@@ -7,7 +7,5 @@ function(Kanfas){
     this.strokeColor = "black";
   }
 
-  Basic.prototype = Object.create(Kanfas.prototype);
-
   return Basic;
 });

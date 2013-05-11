@@ -1,8 +1,13 @@
-define(["modules/shapes/basic"],
-function(Basic){
+define(["kanfas","modules/shapes/basic"],
+function(Kanfas, Basic){
 
-  function Rectangle(config){
-    //basic.call(this);
+  function Rectangle(kanfas, config){
+    if (!kanfas instanceof Kanfas) {
+      console.log("Fails");
+    }
+
+    this.ctx = kanfas.getContext();
+
     this.x = config.x || 0;
     this.y = config.y || 0;
     this.width = config.width || 50;

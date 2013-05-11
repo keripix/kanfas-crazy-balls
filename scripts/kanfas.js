@@ -3,5 +3,9 @@ define(function(){
     this.ctx = ctx;
   }
 
+  Kanfas.prototype.getContext = function() {
+    return this.ctx;
+  };
+
   return Kanfas;
 });
