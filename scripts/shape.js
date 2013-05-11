@@ -1,7 +1,5 @@
-define(["kanfas",
-        "modules/interactions/mouse",
-        "modules/utils/object"],
-function(Kanfas, Mouse, ObjectUtil){
+define(["kanfas"],
+function(Kanfas){
   function Shape(config){
     this.x = config.x || 0;
     this.y = config.y || 0;

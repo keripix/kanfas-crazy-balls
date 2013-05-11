@@ -1,6 +1,4 @@
-define(["modules/utils/object",
-        "modules/interactions/events"],
-function(ObjectUtil, Events){
+define(function(){
 
   function Kanfas(canvas){
     this.canvas = canvas;
@@ -38,13 +36,13 @@ function(ObjectUtil, Events){
 
     getSubscriptions: function(){
       return {
-        'mouse.enter': this.onMouseEnter,
-        'mouse.click': this.onMouseClick
+        'canvas.pressed': this.onMouseDown,
+        'canvas.released': this.onMouseUp,
+        'canvas.dragging': this.onMouseDrag,
+        'canvas.dragged': this.onMouseDragged
       };
     }
   };
-
-  Events.subscribe(Kanfas);
 
   return Kanfas;
 });
