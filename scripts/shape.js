@@ -7,5 +7,11 @@ function(Kanfas){
     this.height = config.height || 10;
   }
 
+  Shape.prototype = {
+    setContext: function(ctx){
+      this.ctx = ctx;
+    }
+  };
+
   return Shape;
 });
