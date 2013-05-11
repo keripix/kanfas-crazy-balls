@@ -4,10 +4,9 @@ requirejs.config({
 
 requirejs(["kanfas", "modules/shapes/rectangle"],
 function(Kanfas, Rectangle){
-  var canvas = document.getElementById("paintarea"),
-      ctx = canvas.getContext("2d");
+  var canvas = document.getElementById("paintarea");
 
-  var k = new Kanfas(ctx),
+  var k = new Kanfas(canvas),
       rect = new Rectangle(k, {
         width: 50,
         height: 50,

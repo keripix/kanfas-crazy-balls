@@ -1,18 +1,14 @@
-define(["kanfas","modules/shapes/basic"],
-function(Kanfas, Basic){
+define(["kanfas","shape"],
+function(Kanfas, Shape){
 
   function Rectangle(kanfas, config){
-    if (!kanfas instanceof Kanfas) {
-      console.log("Fails");
-    }
-
+    this.canvas = kanfas.getCanvas();
     this.ctx = kanfas.getContext();
 
-    this.x = config.x || 0;
-    this.y = config.y || 0;
-    this.width = config.width || 50;
-    this.height = config.height || 50;
+    Shape.call(this, config);
   }
+
+  Rectangle.prototype = Object.create(Shape.prototype);
 
   Rectangle.prototype.draw = function() {
     this.ctx.strokeRect(this.x, this.y, this.width, this.height);
