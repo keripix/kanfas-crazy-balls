@@ -26,20 +26,40 @@ define(function(){
       });
     },
 
-    onMouseEnter: function(){
-      console.log("mouse enter");
+    onMousePressed: function(){
+      console.log("mouse pressed");
     },
 
-    onMouseClick: function(){
-      console.log("mouse click");
+    onMouseReleased: function(){
+      console.log("mouse released");
+    },
+
+    onMouseDrag: function(){
+      console.log("mouse drag");
+    },
+
+    onMouseDragged: function(){
+      console.log("mouse dragged");
     },
 
     getSubscriptions: function(){
       return {
-        'canvas.pressed': this.onMouseDown,
-        'canvas.released': this.onMouseUp,
-        'canvas.dragging': this.onMouseDrag,
-        'canvas.dragged': this.onMouseDragged
+        'canvas.pressed': {
+          fn: this.onMousePressed,
+          scope: this
+        },
+        'canvas.released': {
+          fn: this.onMouseReleased,
+          scope: this
+        },
+        'canvas.dragging': {
+          fn: this.onMouseDrag,
+          scope:this
+        },
+        'canvas.dragged': {
+          fn: this.onMouseDragged,
+          scope: this
+        }
       };
     }
   };

@@ -1,5 +1,4 @@
-define(["kanfas"],
-function(Kanfas){
+define(function(){
   function Shape(config){
     this.x = config.x || 0;
     this.y = config.y || 0;
