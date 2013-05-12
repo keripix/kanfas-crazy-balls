@@ -10,11 +10,11 @@ define(function(){
     init: function(){
       this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this), false);
       this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this), false);
+      this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this), false);
     },
 
     addSubscriber: function(obj){
       var interests = obj.getSubscriptions();
-      console.log(interests);
 
       for(var e in interests){
         this.on(e, interests[e]);
@@ -48,7 +48,15 @@ define(function(){
 
     onMouseUp: function(e){
       this.down = false;
+      this.drag = false;
       this.fireEvent('canvas.released', e);
+    },
+
+    onMouseMove: function(e){
+      if (this.down) {
+        this.drag = true;
+        this.fireEvent('canvas.dragging');
+      }
     }
   };
 
