@@ -26,19 +26,20 @@ define(function(){
       });
     },
 
-    onMousePressed: function(){
-      console.log("mouse pressed");
+    onMousePressed: function(e){
+      var x = e.clientX,
+          y = e.clientY;
     },
 
-    onMouseReleased: function(){
+    onMouseReleased: function(e){
       console.log("mouse released");
     },
 
-    onMouseDrag: function(){
+    onMouseDrag: function(e){
       console.log("mouse drag");
     },
 
-    onMouseDragged: function(){
+    onMouseDragged: function(e){
       console.log("mouse dragged");
     },
 

@@ -14,13 +14,19 @@ define(function(){
     },
 
     addSubscriber: function(obj){
-      var interests = obj.getSubscriptions();
+      var interests = obj.getSubscriptions && obj.getSubscriptions() || undefined;
+
+      if (!interests) {
+        return;
+      }
 
       for(var e in interests){
         this.on(e, interests[e]);
       }
     },
 
+    // TODO callbackOpt tidak memaksakan struktur. Ia bisa menerima sebuah
+    // callback, dan juga objek yang mengandung konfigurasi callback
     on: function(eventName, callbackOpt){
       if (!this.handlers[eventName]) {
         this.handlers[eventName] = [];
