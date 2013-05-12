@@ -29,6 +29,8 @@ define(function(){
     onMousePressed: function(e){
       var x = e.clientX,
           y = e.clientY;
+
+      console.log(this.canvasObjects);
     },
 
     onMouseReleased: function(e){
