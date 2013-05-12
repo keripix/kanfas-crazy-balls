@@ -1,18 +1,10 @@
 define(function(){
-  function Events(canvas){
-    this.canvas = canvas;
-    this.down = false;
-    this.init();
+  function Events(){
     this.handlers = [];
   }
 
   Events.prototype = {
-    init: function(){
-      this.canvas.addEventListener('mousedown', this.onMouseDown.bind(this), false);
-      this.canvas.addEventListener('mouseup', this.onMouseUp.bind(this), false);
-      this.canvas.addEventListener('mousemove', this.onMouseMove.bind(this), false);
-    },
-
+    // TODO struktur obj yang lebih fleksibel
     addSubscriber: function(obj){
       var interests = obj.getSubscriptions && obj.getSubscriptions() || undefined;
 
@@ -43,30 +35,8 @@ define(function(){
       }
 
       this.handlers[eventName].forEach(function(callback){
-        callback(e);
+        return callback(e);
       });
-    },
-
-    onMouseDown: function(e){
-      this.down = true;
-      this.fireEvent('canvas.pressed', e);
-    },
-
-    onMouseUp: function(e){
-      this.down = false;
-      this.fireEvent('canvas.released', e);
-
-      if (this.drag) {
-        this.drag = false;
-        this.fireEvent('canvas.dragged', e);
-      }
-    },
-
-    onMouseMove: function(e){
-      if (this.down) {
-        this.drag = true;
-        this.fireEvent('canvas.dragging');
-      }
     }
   };
 

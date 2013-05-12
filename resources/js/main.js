@@ -4,12 +4,14 @@ requirejs.config({
 
 requirejs(["kanfas",
           "modules/shapes/rectangle",
-          "modules/interactions/events"],
-function(Kanfas, Rectangle, Events){
+          "modules/interactions/events",
+          "modules/interactions/mouse"],
+function(Kanfas, Rectangle, Events, Mouse){
   var canvas = document.getElementById("paintarea");
 
   var k = new Kanfas(canvas),
       e = new Events(canvas),
+      m = new Mouse(canvas, e),
       rect = new Rectangle({
         width: 50,
         height: 50,
