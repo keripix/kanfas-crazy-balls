@@ -48,8 +48,12 @@ define(function(){
 
     onMouseUp: function(e){
       this.down = false;
-      this.drag = false;
       this.fireEvent('canvas.released', e);
+
+      if (this.drag) {
+        this.drag = false;
+        this.fireEvent('canvas.dragged', e);
+      }
     },
 
     onMouseMove: function(e){
