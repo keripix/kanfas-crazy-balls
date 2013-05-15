@@ -4,6 +4,7 @@ define(function(){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.canvasObjects = [];
+    this.selectedObjects = [];
   }
 
   Kanfas.prototype = {
@@ -29,8 +30,14 @@ define(function(){
     onMousePressed: function(e){
       var x = e.clientX,
           y = e.clientY;
+      console.log(x, y);
+      this.canvasObjects.forEach(function(obj){
+        if (obj.isPointInsideMe(x,y)){
+          this.selectedObjects.push(obj);
+        }
+      }, this);
 
-      console.log(this.canvasObjects);
+      console.log(this.selectedObjects);
     },
 
     onMouseReleased: function(e){
@@ -38,7 +45,9 @@ define(function(){
     },
 
     onMouseDrag: function(e){
-      console.log("mouse drag");
+      this.selectedObjects.forEach(function(obj){
+        obj.move(e.clientX, e.clientY);
+      });
     },
 
     onMouseDragged: function(e){

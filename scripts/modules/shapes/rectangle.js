@@ -14,7 +14,7 @@ function(Kanfas, Shape, ObjectUtil){
     },
 
     isPointInsideMe: function(x, y){
-
+      return x <= (this.x + this.width) && y <= (this.y + this.height);
     }
   };
 
