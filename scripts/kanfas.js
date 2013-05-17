@@ -34,6 +34,7 @@ define(function(){
       this.canvasObjects.forEach(function(obj){
         if (obj.isPointInsideMe(x,y)){
           this.selectedObjects.push(obj);
+          obj.selected();
         }
       }, this);
 
@@ -56,19 +57,19 @@ define(function(){
 
     getSubscriptions: function(){
       return {
-        'canvas.pressed': {
+        'mouse.down': {
           fn: this.onMousePressed,
           scope: this
         },
-        'canvas.released': {
+        'mouse.up': {
           fn: this.onMouseReleased,
           scope: this
         },
-        'canvas.dragging': {
+        'mouse.move': {
           fn: this.onMouseDrag,
           scope:this
         },
-        'canvas.dragged': {
+        'mouse.moved': {
           fn: this.onMouseDragged,
           scope: this
         }

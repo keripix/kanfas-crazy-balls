@@ -16,23 +16,23 @@ define(function(){
 
     onMouseDown: function(e){
       this.down = true;
-      this.events.fireEvent('canvas.pressed', e);
+      this.events.fireEvent('mouse.down', e);
     },
 
     onMouseUp: function(e){
       this.down = false;
-      this.events.fireEvent('canvas.released', e);
+      this.events.fireEvent('mouse.up', e);
 
       if (this.drag) {
         this.drag = false;
-        this.events.fireEvent('canvas.dragged', e);
+        this.events.fireEvent('mouse.moved', e);
       }
     },
 
     onMouseMove: function(e){
       if (this.down) {
         this.drag = true;
-        this.events.fireEvent('canvas.dragging');
+        this.events.fireEvent('mouse.move', e);
       }
     }
   };
