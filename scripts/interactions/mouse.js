@@ -1,3 +1,7 @@
+/**
+ * This module is responsible for handling mouse interaction with
+ * canvas and its objects
+ */
 define(function(){
   function Mouse(canvas, events){
     this.canvas = canvas;
@@ -30,6 +34,15 @@ define(function(){
       this.htmlLeft = html.offsetLeft;
     },
 
+    /**
+     * Getting the correct mouse position.
+     *
+     * Code borrowed from:
+     * http://simonsarris.com/blog/510-making-html5-canvas-useful
+     *
+     * @param  {Event} e Mouse event object
+     * @return {Object}   Contains the x and y coordinates
+     */
     getMousePosition: function(e){
       var offsetX = 0,
           offsetY = 0,

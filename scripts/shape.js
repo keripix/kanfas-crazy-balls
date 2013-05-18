@@ -1,3 +1,6 @@
+/**
+ * This is the base prototype for all shapes
+ */
 define(function(){
   function Shape(config){
     this.x = config.x || 0;
@@ -8,12 +11,6 @@ define(function(){
 
     this.rotation = config.rotation || 0;
   }
-
-  Shape.prototype = {
-    setContext: function(ctx){
-      this.ctx = ctx;
-    }
-  };
 
   return Shape;
 });

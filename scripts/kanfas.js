@@ -1,3 +1,6 @@
+/**
+ * Ini module untuk apa?
+ */
 define(function(){
 
   function Kanfas(canvas){
@@ -17,14 +20,13 @@ define(function(){
     },
 
     add: function(object){
-      object.setContext(this.getContext());
       this.canvasObjects.push(object);
     },
 
     draw: function(){
       this.canvasObjects.forEach(function(o){
-        o.draw();
-      });
+        o.draw(this.ctx);
+      }, this);
     },
 
     onMousePressed: function(point){
@@ -32,6 +34,7 @@ define(function(){
         if (obj.isPointInsideMe(point.x, point.y)){
           this.selectedObjects.push(obj);
           obj.selected();
+          // should I publish an event here?
         }
       }, this);
 

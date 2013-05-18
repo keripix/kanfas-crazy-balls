@@ -1,3 +1,6 @@
+/**
+ * This module acts as an Event Aggregator
+ */
 define(function(){
   function Events(){
     this.handlers = [];

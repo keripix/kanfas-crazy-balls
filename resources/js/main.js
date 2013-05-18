@@ -5,8 +5,8 @@ requirejs.config({
 requirejs(["kanfas",
           "state",
           "events",
-          "modules/shapes/rectangle",
-          "modules/interactions/mouse"],
+          "shapes/rectangle",
+          "interactions/mouse"],
 function(Kanfas, State, Events, Rectangle, Mouse){
   var canvas = document.getElementById("paintarea");
 
