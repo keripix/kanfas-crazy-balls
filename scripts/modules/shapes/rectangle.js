@@ -14,7 +14,8 @@ function(Kanfas, Shape, ObjectUtil){
     },
 
     isPointInsideMe: function(x, y){
-      return x <= (this.x + this.width) && y <= (this.y + this.height);
+      return (x >= this.x) && (x <= (this.x + this.width))
+              && (y >= this.y) && (y <= (this.y + this.height));
     },
 
     move: function(x, y){

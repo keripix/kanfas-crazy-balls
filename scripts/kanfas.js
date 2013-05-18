@@ -27,12 +27,9 @@ define(function(){
       });
     },
 
-    onMousePressed: function(e){
-      var x = e.clientX,
-          y = e.clientY;
-      console.log(x, y);
+    onMousePressed: function(point){
       this.canvasObjects.forEach(function(obj){
-        if (obj.isPointInsideMe(x,y)){
+        if (obj.isPointInsideMe(point.x, point.y)){
           this.selectedObjects.push(obj);
           obj.selected();
         }
@@ -41,17 +38,17 @@ define(function(){
       console.log(this.selectedObjects);
     },
 
-    onMouseReleased: function(e){
+    onMouseReleased: function(point){
       console.log("mouse released");
     },
 
-    onMouseDrag: function(e){
+    onMouseDrag: function(point){
       this.selectedObjects.forEach(function(obj){
-        obj.move(e.clientX, e.clientY);
+        obj.move(point.x, point.y);
       });
     },
 
-    onMouseDragged: function(e){
+    onMouseDragged: function(point){
       console.log("mouse dragged");
     },
 
