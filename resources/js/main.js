@@ -3,15 +3,17 @@ requirejs.config({
 });
 
 requirejs(["kanfas",
+          "state",
+          "events",
           "modules/shapes/rectangle",
-          "modules/interactions/events",
           "modules/interactions/mouse"],
-function(Kanfas, Rectangle, Events, Mouse){
+function(Kanfas, State, Events, Rectangle, Mouse){
   var canvas = document.getElementById("paintarea");
 
-  var k = new Kanfas(canvas),
-      e = new Events(canvas),
-      m = new Mouse(canvas, e),
+  var kanfas = new Kanfas(canvas),
+      events = new Events(canvas),
+      state = new State(canvas, events),
+      mouse = new Mouse(canvas, events),
       rect = new Rectangle({
         width: 50,
         height: 50,
@@ -20,8 +22,8 @@ function(Kanfas, Rectangle, Events, Mouse){
       });
 
   // K subscribes to e events
-  e.addSubscriber(k);
+  events.addSubscriber(kanfas);
 
-  k.add(rect);
-  k.draw();
+  kanfas.add(rect);
+  kanfas.draw();
 });
