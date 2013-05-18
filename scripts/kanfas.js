@@ -3,11 +3,10 @@
  */
 define(function(){
 
-  function Kanfas(canvas){
+  function Kanfas(canvas, state){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
-    this.canvasObjects = [];
-    this.selectedObjects = [];
+    this.state = state;
   }
 
   Kanfas.prototype = {
@@ -20,25 +19,29 @@ define(function(){
     },
 
     add: function(object){
-      this.canvasObjects.push(object);
+      this.state.addObject(object);
     },
 
     draw: function(){
-      this.canvasObjects.forEach(function(o){
+      var objects = this.state.drawAll() ? this.state.getObjects() : this.state.getSelected();
+
+      objects.forEach(function(o){
         o.draw(this.ctx);
       }, this);
     },
 
     onMousePressed: function(point){
-      this.canvasObjects.forEach(function(obj){
+      var canvasObjects = this.state.getObjects();
+
+      canvasObjects.forEach(function(obj){
         if (obj.isPointInsideMe(point.x, point.y)){
-          this.selectedObjects.push(obj);
-          obj.selected();
+          this.state.addSelected(obj);
+          obj.selected(this.ctx);
           // should I publish an event here?
         }
       }, this);
 
-      console.log(this.selectedObjects);
+      this.draw();
     },
 
     onMouseReleased: function(point){

@@ -34,9 +34,9 @@ function(Shape, ObjectUtil){
       console.log("moving to: ", x, y);
     },
 
-    selected: function(){
-      this.ctx.strokeStyle = "red";
-      this.ctx.stroke();
+    selected: function(ctx){
+      ctx.strokeStyle = "#CC0000";
+      ctx.stroke();
     }
   };
 

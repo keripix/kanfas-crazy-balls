@@ -10,9 +10,9 @@ requirejs(["kanfas",
 function(Kanfas, State, Events, Rectangle, Mouse){
   var canvas = document.getElementById("paintarea");
 
-  var kanfas = new Kanfas(canvas),
-      events = new Events(canvas),
+  var events = new Events(canvas),
       state = new State(canvas, events),
+      kanfas = new Kanfas(canvas, state),
       mouse = new Mouse(canvas, events),
       rect = new Rectangle({
         width: 50,
