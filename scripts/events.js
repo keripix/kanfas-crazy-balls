@@ -3,11 +3,11 @@
  */
 define(function(){
   function Events(){
-    this.handlers = [];
+    this.handlers = {};
   }
 
   Events.prototype = {
-    // TODO struktur obj yang lebih fleksibel
+    // TODO test
     addSubscriber: function(obj){
       var interests = obj.getSubscriptions && obj.getSubscriptions() || undefined;
 
@@ -15,16 +15,23 @@ define(function(){
         return;
       }
 
+      var scope = interests.scope || this;
+
       for(var e in interests){
-        this.on(e, interests[e]);
+        if (e === 'scope') continue;
+
+        this.on(e, interests[e], scope);
       }
     },
 
     // TODO callbackOpt tidak memaksakan struktur. Ia bisa menerima sebuah
     // callback, dan juga objek yang mengandung konfigurasi callback
-    on: function(eventName, callbackOpt){
-      (this.handlers[eventName] || (this.handlers[eventName] = [])).push(function(e){
-        return callbackOpt.fn.call(callbackOpt.scope || this, e);
+    on: function(eventName, callbackFn, scope){
+      scope = scope || this;
+
+      (this.handlers[eventName] || (this.handlers[eventName] = [])).push({
+        fn: callbackFn,
+        scope: scope
       });
     },
 
@@ -34,8 +41,16 @@ define(function(){
       }
 
       this.handlers[eventName].forEach(function(callback){
-        return callback(e);
+        return callback.fn && callback.fn.call(callback.scope, e);
       });
+    },
+
+    removeListener: function(eventName, callbackFn){
+      var listener = this.findListener(eventName, callbackFn);
+    },
+
+    findListener: function(eventName, callbackFn){
+
     }
   };
 

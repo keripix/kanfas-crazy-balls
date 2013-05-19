@@ -15,8 +15,7 @@ function(Shape, ObjectUtil){
      * Draw me
      */
     draw: function(ctx){
-      if (this.redraw) this.clear(ctx);
-
+      ctx.strokeStyle = this.strokeStyle;
       ctx.strokeRect(this.x, this.y, this.width, this.height);
     },
 
@@ -43,11 +42,11 @@ function(Shape, ObjectUtil){
     },
 
     select: function(ctx){
-      ctx.strokeStyle = this.selectedStyle;
+      this.strokeStyle = this.selectedStyle;
     },
 
     deselect: function(ctx){
-      ctx.strokeStyle = this.normalStyle;
+      this.strokeStyle = this.normalStyle;
     }
   };
 

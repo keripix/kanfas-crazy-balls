@@ -14,7 +14,8 @@ define(function(){
     this.redraw = false;
 
     this.selectedStyle = "#CC0000";
-    this.normalStyle = "#000000"
+    this.normalStyle = "#000000";
+    this.strokeStyle = this.normalStyle;
   }
 
   return Shape;

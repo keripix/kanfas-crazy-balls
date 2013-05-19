@@ -6,3 +6,5 @@
  ☐ Memutar objek
  ☐ Mengubah ukuran objek
  ☐ Mendukung tipe objek lain
+ ☐ Dapat melakukan removeListener untuk module EventJs
+ ☐ Unit test (A Must)

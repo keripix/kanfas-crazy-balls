@@ -29,7 +29,7 @@ define(function(){
     },
 
     draw: function(){
-      var objects = this.state.drawAll() ? this.state.getObjects() : this.state.getSelected();
+      var objects = this.state.getObjects();
 
       objects.forEach(function(o){
         o.draw(this.ctx);
@@ -44,6 +44,7 @@ define(function(){
           this.state.addSelected(obj);
           obj.select(this.ctx);
         } else {
+          this.state.removeSelected(obj);
           obj.deselect(this.ctx);
         }
       }, this);
@@ -73,22 +74,11 @@ define(function(){
 
     getSubscriptions: function(){
       return {
-        'mouse.down': {
-          fn: this.onMousePressed,
-          scope: this
-        },
-        'mouse.up': {
-          fn: this.onMouseReleased,
-          scope: this
-        },
-        'mouse.move': {
-          fn: this.onMouseDrag,
-          scope:this
-        },
-        'mouse.moved': {
-          fn: this.onMouseDragged,
-          scope: this
-        }
+        scope: this,
+        'mouse.down': this.onMousePressed,
+        'mouse.up': this.onMouseReleased,
+        'mouse.move': this.onMouseDrag,
+        'mouse.moved': this.onMouseDragged
       };
     }
   };

@@ -31,8 +31,11 @@ define(function(){
     },
 
     addSelected: function(obj){
-      this.drawAllObjects = false;
-      this.selections.push(obj);
+      if (this.findObject(obj, this.selections) === -1) {
+        this.drawAllObjects = false;
+        this.selections.push(obj);
+      }
+      console.log("selected: ", this.selections);
     },
 
     removeObject: function(obj){
@@ -40,7 +43,28 @@ define(function(){
     },
 
     removeSelected: function(obj){
+      var index = this.findObject(obj, this.selections);
 
+      if (index === -1) {
+        return;
+      }
+
+      this.selections.splice(index, 1);
+      console.log("after deselect: ", this.selections);
+    },
+
+    findObject: function(obj, data){
+      var length = data.length,
+          index = -1;
+
+      for(var i = length;i >= 0; i--) {
+        if (data[i] === obj) {
+          index = i;
+          break;
+        }
+      }
+
+      return index;
     },
 
     drawAll: function(){
