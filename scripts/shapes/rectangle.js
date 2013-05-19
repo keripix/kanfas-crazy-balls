@@ -17,15 +17,12 @@ function(Shape, ObjectUtil){
     draw: function(ctx){
       ctx.fillStyle = this.fillStyle;
       ctx.fillRect(this.x, this.y, this.width, this.height);
-      return this;
-    },
 
-    /**
-     * Draw my selection style
-     */
-    drawSelect: function(ctx){
-      ctx.strokeStyle = this.strokeStyle;
-      ctx.strokeRect(this.x, this.y, this.width, this.height);
+      if (this.selected) {
+        ctx.strokeStyle = this.strokeStyle;
+        ctx.strokeRect(this.x, this.y, this.width, this.height);
+      }
+
       return this;
     },
 
@@ -65,6 +62,7 @@ function(Shape, ObjectUtil){
       this.offsetX = x - this.x;
       this.offsetY = y - this.y;
       this.strokeStyle = this.selectedStyle;
+      this.selected = true;
       return this;
     },
 
@@ -72,6 +70,7 @@ function(Shape, ObjectUtil){
       this.offsetX = 0;
       this.offsetY = 0;
       this.strokeStyle = this.normalStyle;
+      this.selected = false;
       return this;
     }
   };

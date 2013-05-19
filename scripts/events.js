@@ -52,12 +52,28 @@ define(function(){
     },
 
     removeListener: function(eventName, callbackFn){
-      var listener = this.findListener(eventName, callbackFn);
+      var index = this.findListener(eventName, callbackFn);
+
+      if (index === -1){
+        return;
+      }
+
+      this.handlers[eventName].splice(index, 1);
       return this;
     },
 
     findListener: function(eventName, callbackFn){
+      var length = this.handlers[eventName],
+          index = -1;
 
+      for(var i = length; i>=0;i--){
+        if (this.handlers[eventName][i].fn === callbackFn){
+          index = i;
+          break;
+        }
+      }
+
+      return index;
     }
   };
 

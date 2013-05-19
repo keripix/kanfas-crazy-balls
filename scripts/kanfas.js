@@ -50,12 +50,11 @@ define(function(){
           this.state.removeSelected(obj);
           obj.deselect(this.ctx);
         }
-        obj.drawSelect(this.ctx);
+        obj.draw(this.ctx);
       }, this);
     },
 
     onMouseReleased: function(point){
-      console.log("mouse released");
     },
 
     // TODO not working on chrome

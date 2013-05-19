@@ -19,6 +19,7 @@ define(function(){
     this.selectedStyle = "#CC0000";
     this.normalStyle = this.fillStyle;
     this.strokeStyle = this.normalStyle;
+    this.selected = false;
 
     this.strokeWidth = 1;
   }
