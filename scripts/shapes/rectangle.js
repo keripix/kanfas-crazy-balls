@@ -15,6 +15,11 @@ function(Shape, ObjectUtil){
      * Draw me
      */
     draw: function(ctx){
+      ctx.fillStyle = this.fillStyle;
+      ctx.fillRect(this.x, this.y, this.width, this.height);
+    },
+
+    drawSelect: function(ctx){
       ctx.strokeStyle = this.strokeStyle;
       ctx.strokeRect(this.x, this.y, this.width, this.height);
     },

@@ -47,9 +47,8 @@ define(function(){
           this.state.removeSelected(obj);
           obj.deselect(this.ctx);
         }
+        obj.drawSelect(this.ctx);
       }, this);
-
-      this.draw();
     },
 
     onMouseReleased: function(point){

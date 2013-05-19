@@ -13,9 +13,14 @@ define(function(){
 
     this.redraw = false;
 
+    this.fillStyle = "#CCCC00";
+
     this.selectedStyle = "#CC0000";
-    this.normalStyle = "#000000";
+    this.normalStyle = this.fillStyle;
     this.strokeStyle = this.normalStyle;
+
+    this.strokeWidth = 1;
+
   }
 
   return Shape;
