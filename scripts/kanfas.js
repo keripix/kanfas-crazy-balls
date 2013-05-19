@@ -7,6 +7,8 @@ define(function(){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
     this.state = state;
+    this.width = canvas.width;
+    this.height = canvas.height;
   }
 
   Kanfas.prototype = {
@@ -20,6 +22,10 @@ define(function(){
 
     add: function(object){
       this.state.addObject(object);
+    },
+
+    clear: function(){
+      this.ctx.clearRect(0, 0, this.width, this.height);
     },
 
     draw: function(){
@@ -36,8 +42,9 @@ define(function(){
       canvasObjects.forEach(function(obj){
         if (obj.isPointInsideMe(point.x, point.y)){
           this.state.addSelected(obj);
-          obj.selected(this.ctx);
-          // should I publish an event here?
+          obj.select(this.ctx);
+        } else {
+          obj.deselect(this.ctx);
         }
       }, this);
 
@@ -48,10 +55,16 @@ define(function(){
       console.log("mouse released");
     },
 
+    // TODO not working on chrome
     onMouseDrag: function(point){
-      this.selectedObjects.forEach(function(obj){
+      var objects = this.state.getSelected();
+
+      objects.forEach(function(obj){
         obj.move(point.x, point.y);
-      });
+      }, this);
+
+      this.clear();
+      this.draw();
     },
 
     onMouseDragged: function(point){

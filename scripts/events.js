@@ -23,11 +23,7 @@ define(function(){
     // TODO callbackOpt tidak memaksakan struktur. Ia bisa menerima sebuah
     // callback, dan juga objek yang mengandung konfigurasi callback
     on: function(eventName, callbackOpt){
-      if (!this.handlers[eventName]) {
-        this.handlers[eventName] = [];
-      }
-
-      this.handlers[eventName].push(function(e){
+      (this.handlers[eventName] || (this.handlers[eventName] = [])).push(function(e){
         return callbackOpt.fn.call(callbackOpt.scope || this, e);
       });
     },

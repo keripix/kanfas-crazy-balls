@@ -15,7 +15,13 @@ function(Shape, ObjectUtil){
      * Draw me
      */
     draw: function(ctx){
+      if (this.redraw) this.clear(ctx);
+
       ctx.strokeRect(this.x, this.y, this.width, this.height);
+    },
+
+    clear: function(ctx){
+      ctx.clearRect(this.x, this.y, this.width, this.height);
     },
 
     /**
@@ -31,11 +37,18 @@ function(Shape, ObjectUtil){
     },
 
     move: function(x, y){
-      console.log("moving to: ", x, y);
+      this.x = x;
+      this.y = y;
+      this.redraw = true;
     },
 
-    selected: function(ctx){
-      ctx.strokeStyle = "#CC0000";
+    select: function(ctx){
+      ctx.strokeStyle = this.selectedStyle;
+      ctx.stroke();
+    },
+
+    deselect: function(ctx){
+      ctx.strokeStyle = this.normalStyle;
       ctx.stroke();
     }
   };

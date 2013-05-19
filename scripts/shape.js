@@ -10,6 +10,11 @@ define(function(){
     this.height = config.height || 10;
 
     this.rotation = config.rotation || 0;
+
+    this.redraw = false;
+
+    this.selectedStyle = "#CC0000";
+    this.normalStyle = "#000000"
   }
 
   return Shape;
