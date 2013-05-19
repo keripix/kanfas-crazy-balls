@@ -43,7 +43,6 @@ function(Shape, ObjectUtil){
     move: function(x, y){
       this.x = x - this.offsetX;
       this.y = y - this.offsetY;
-      this.redraw = true;
     },
 
     select: function(ctx, x, y){

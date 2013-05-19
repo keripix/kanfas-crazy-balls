@@ -1,10 +1,12 @@
  ✔ Deteksi posisi mouse dengan benar @done (13-05-19 03:58)
  ✔ Memilih objek @done (13-05-19 06:30)
  ✔ Menggerakkan objek @done (13-05-19 06:30)
- ☐ Menambahkan objek
+ ✔ Menambahkan objek @done (13-05-19 17:20)
  ☐ Memilih objek dengan urutan stack yang benar
  ☐ Memutar objek
  ☐ Mengubah ukuran objek
  ☐ Mendukung tipe objek lain
  ☐ Dapat melakukan removeListener untuk module EventJs
  ☐ Unit test (A Must)
+ ☐ Grouping
+ ☐ Hapus

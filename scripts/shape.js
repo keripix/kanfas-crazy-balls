@@ -14,8 +14,6 @@ define(function(){
 
     this.rotation = config.rotation || 0;
 
-    this.redraw = false;
-
     this.fillStyle = "#CCCC00";
 
     this.selectedStyle = "#CC0000";

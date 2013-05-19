@@ -69,31 +69,6 @@ define(function(){
 
     drawAll: function(){
       return this.drawAllObjects;
-    },
-
-    onMouseDown: function(){
-
-    },
-    onMouseUp: function(){
-
-    },
-    onMouseMove: function(){
-
-    },
-    onMouseMoved: function(){
-
-    },
-    getSubscriptions: function(){
-      return {
-        'mouse.down': {
-        },
-        'mouse.up': {
-        },
-        'mouse.move': {
-        },
-        'mouse.moved': {
-        }
-      }
     }
   };
 
