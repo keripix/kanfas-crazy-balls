@@ -44,12 +44,10 @@ function(Shape, ObjectUtil){
 
     select: function(ctx){
       ctx.strokeStyle = this.selectedStyle;
-      ctx.stroke();
     },
 
     deselect: function(ctx){
       ctx.strokeStyle = this.normalStyle;
-      ctx.stroke();
     }
   };
 
