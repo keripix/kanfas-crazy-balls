@@ -42,7 +42,7 @@ define(function(){
       canvasObjects.forEach(function(obj){
         if (obj.isPointInsideMe(point.x, point.y)){
           this.state.addSelected(obj);
-          obj.select(this.ctx);
+          obj.select(this.ctx, point.x, point.y);
         } else {
           this.state.removeSelected(obj);
           obj.deselect(this.ctx);

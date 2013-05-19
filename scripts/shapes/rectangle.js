@@ -41,16 +41,20 @@ function(Shape, ObjectUtil){
     },
 
     move: function(x, y){
-      this.x = x;
-      this.y = y;
+      this.x = x - this.offsetX;
+      this.y = y - this.offsetY;
       this.redraw = true;
     },
 
-    select: function(ctx){
+    select: function(ctx, x, y){
+      this.offsetX = x - this.x;
+      this.offsetY = y - this.y;
       this.strokeStyle = this.selectedStyle;
     },
 
     deselect: function(ctx){
+      this.offsetX = 0;
+      this.offsetY = 0;
       this.strokeStyle = this.normalStyle;
     }
   };
