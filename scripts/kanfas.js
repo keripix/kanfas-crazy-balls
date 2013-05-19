@@ -22,10 +22,12 @@ define(function(){
 
     add: function(object){
       this.state.addObject(object);
+      return this;
     },
 
     clear: function(){
       this.ctx.clearRect(0, 0, this.width, this.height);
+      return this;
     },
 
     draw: function(){
@@ -34,6 +36,7 @@ define(function(){
       objects.forEach(function(o){
         o.draw(this.ctx);
       }, this);
+      return this;
     },
 
     onMousePressed: function(point){

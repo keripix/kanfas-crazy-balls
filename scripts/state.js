@@ -28,6 +28,7 @@ define(function(){
 
     addObject: function(obj){
       this.objects.push(obj);
+      return this;
     },
 
     addSelected: function(obj){
@@ -35,7 +36,7 @@ define(function(){
         this.drawAllObjects = false;
         this.selections.push(obj);
       }
-      console.log("selected: ", this.selections);
+      return this;
     },
 
     removeObject: function(obj){
@@ -50,7 +51,7 @@ define(function(){
       }
 
       this.selections.splice(index, 1);
-      console.log("after deselect: ", this.selections);
+      return this;
     },
 
     findObject: function(obj, data){

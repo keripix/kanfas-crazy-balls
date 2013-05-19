@@ -22,6 +22,8 @@ define(function(){
 
         this.on(e, interests[e], scope);
       }
+
+      return this;
     },
 
     // TODO callbackOpt tidak memaksakan struktur. Ia bisa menerima sebuah
@@ -33,6 +35,8 @@ define(function(){
         fn: callbackFn,
         scope: scope
       });
+
+      return this;
     },
 
     fireEvent: function(eventName, e){
@@ -43,10 +47,13 @@ define(function(){
       this.handlers[eventName].forEach(function(callback){
         return callback.fn && callback.fn.call(callback.scope, e);
       });
+
+      return this;
     },
 
     removeListener: function(eventName, callbackFn){
       var listener = this.findListener(eventName, callbackFn);
+      return this;
     },
 
     findListener: function(eventName, callbackFn){
