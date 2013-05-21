@@ -6,8 +6,10 @@ requirejs(["kanfas",
           "state",
           "events",
           "shapes/rectangle",
-          "interactions/mouse"],
-function(Kanfas, State, Events, Rectangle, Mouse){
+          "interactions/mouse",
+          "interactions/boundaries"
+          ],
+function(Kanfas, State, Events, Rectangle, Mouse, Boundaries){
   var canvas = document.getElementById("paintarea");
 
   var events = new Events(canvas),
@@ -25,12 +27,16 @@ function(Kanfas, State, Events, Rectangle, Mouse){
         height: 100,
         x: 110,
         y: 110
-      });
+      }),
+      boundaries = new Boundaries(canvas);
 
   // K subscribes to e events
   events.addSubscriber(kanfas);
 
   kanfas.add(rect);
   kanfas.add(rect2);
+
+  boundaries.addTo(rect, rect2);
+
   kanfas.draw();
 });

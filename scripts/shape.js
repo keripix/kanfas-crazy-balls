@@ -24,5 +24,21 @@ define(function(){
     this.strokeWidth = 1;
   }
 
+  Shape.prototype.getTopLeft = function(){
+    return {x: this.x, y: this.y};
+  };
+
+  Shape.prototype.getTopRight = function(){
+    return {x: this.x + this.width, y: this.y};
+  };
+
+  Shape.prototype.getBottomLeft = function(){
+    return {x: this.x, y: this.y + this.height};
+  };
+
+  Shape.prototype.getBottomRight = function(){
+    return {x: this.x + this.width, y: this.y + this.height};
+  };
+
   return Shape;
 });

@@ -54,7 +54,6 @@ function(Shape, ObjectUtil){
     move: function(x, y){
       this.x = x - this.offsetX;
       this.y = y - this.offsetY;
-
       return this;
     },
 
