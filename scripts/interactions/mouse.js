@@ -85,9 +85,10 @@ define(function(){
     },
 
     onMouseMove: function(e){
+      this.events.fireEvent('mouse.move', this.getMousePosition(e));
       if (this.down) {
         this.drag = true;
-        this.events.fireEvent('mouse.move', this.getMousePosition(e));
+        this.events.fireEvent('mouse.drag', this.getMousePosition(e));
       }
     }
   };

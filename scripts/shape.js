@@ -14,9 +14,9 @@ define(function(){
 
     this.rotation = config.rotation || 0;
 
-    this.fillStyle = "#CCCC00";
+    this.fillStyle = config.fillStyle || "#CCCC00";
 
-    this.selectedStyle = "#CC0000";
+    this.selectedStyle = config.selectedStyle || "#CC0000";
     this.normalStyle = this.fillStyle;
     this.strokeStyle = this.normalStyle;
     this.selected = false;
@@ -24,20 +24,27 @@ define(function(){
     this.strokeWidth = 1;
   }
 
-  Shape.prototype.getTopLeft = function(){
-    return {x: this.x, y: this.y};
-  };
+  Shape.prototype = {
+    getTopLeft: function(){
+      return {x: this.x, y: this.y};
+    },
 
-  Shape.prototype.getTopRight = function(){
-    return {x: this.x + this.width, y: this.y};
-  };
+    getTopRight: function(){
+      return {x: this.x + this.width, y: this.y};
+    },
 
-  Shape.prototype.getBottomLeft = function(){
-    return {x: this.x, y: this.y + this.height};
-  };
-
-  Shape.prototype.getBottomRight = function(){
-    return {x: this.x + this.width, y: this.y + this.height};
+    getBottomLeft: function(){
+      return {x: this.x, y: this.y + this.height};
+    },
+    getBottomRight: function(){
+      return {x: this.x + this.width, y: this.y + this.height};
+    },
+    getWidth: function(){
+      return this.width;
+    },
+    getHeight: function(){
+      return this.height;
+    }
   };
 
   return Shape;

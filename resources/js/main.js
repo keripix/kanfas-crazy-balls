@@ -28,7 +28,7 @@ function(Kanfas, State, Events, Rectangle, Mouse, Boundaries){
         x: 110,
         y: 110
       }),
-      boundaries = new Boundaries(canvas);
+      boundaries = new Boundaries(kanfas, events);
 
   // K subscribes to e events
   events.addSubscriber(kanfas);

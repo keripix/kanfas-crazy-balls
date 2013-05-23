@@ -78,7 +78,7 @@ define(function(){
         scope: this,
         'mouse.down': this.onMousePressed,
         'mouse.up': this.onMouseReleased,
-        'mouse.move': this.onMouseDrag,
+        'mouse.drag': this.onMouseDrag,
         'mouse.moved': this.onMouseDragged
       };
     }
