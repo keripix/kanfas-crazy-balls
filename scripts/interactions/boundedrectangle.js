@@ -19,14 +19,15 @@ function(Rectangle){
         br = this.object.getBottomRight(),
         ow = this.object.getWidth(),
         oh = this.object.getHeight(),
-        topLeft = {x: tl.x-ofh, y: tl.y-ofh, width: h, height: h,fillStyle: fs},
-        topRight = {x: tr.x-ofh, y: tr.y-ofh, width: h, height: h, fillStyle: fs},
-        bottomLeft = {x: bl.x-ofh, y: bl.y-ofh,width: h, height: h, fillStyle: fs},
-        bottomRight = {x: br.x-ofh, y:br.y-ofh,width:h, height:h,fillStyle: fs},
-        topMiddle = {x: tl.x-ofh+ow/2,y:tl.y-ofh,width:h,height:h,fillStyle:fs},
-        rightMiddle = {x: tr.x-ofh,y:tr.y-ofh+oh/2,width:h,height:h,fillStyle:fs},
-        bottomMiddle = {x: bl.x-ofh+ow/2,y:bl.y-ofh,width:h,height:h,fillStyle:fs},
-        leftMiddle = {x: tl.x-ofh,y:tl.y-ofh+oh/2,width:h,height:h,fillStyle:fs};
+        alpha = 0.6,
+        topLeft = {x: tl.x-ofh, y: tl.y-ofh, width: h, height: h,fillStyle: fs,alpha: alpha},
+        topRight = {x: tr.x-ofh, y: tr.y-ofh, width: h, height: h, fillStyle: fs,alpha:alpha},
+        bottomLeft = {x: bl.x-ofh, y: bl.y-ofh,width: h, height: h, fillStyle: fs,alpha:alpha},
+        bottomRight = {x: br.x-ofh, y:br.y-ofh,width:h, height:h,fillStyle: fs,alpha:alpha},
+        topMiddle = {x: tl.x-ofh+ow/2,y:tl.y-ofh,width:h,height:h,fillStyle:fs,alpha:alpha},
+        rightMiddle = {x: tr.x-ofh,y:tr.y-ofh+oh/2,width:h,height:h,fillStyle:fs,alpha:alpha},
+        bottomMiddle = {x: bl.x-ofh+ow/2,y:bl.y-ofh,width:h,height:h,fillStyle:fs,alpha:alpha},
+        leftMiddle = {x: tl.x-ofh,y:tl.y-ofh+oh/2,width:h,height:h,fillStyle:fs,alpha:alpha};
 
     this.boundedRects['topLeft'] = new Rectangle(topLeft);
     this.boundedRects['topRight'] = new Rectangle(topRight);

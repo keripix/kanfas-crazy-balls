@@ -13,6 +13,8 @@ define(function(){
 
   Mouse.prototype = {
     init: function(){
+      // This event is cancelled so that the text selection event
+      // that can happen on canvas is not processed
       this.canvas.addEventListener('selectstart', function(e){
         e.preventDefault();
         return false;

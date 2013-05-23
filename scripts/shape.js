@@ -14,9 +14,11 @@ define(function(){
 
     this.rotation = config.rotation || 0;
 
-    this.fillStyle = config.fillStyle || "#CCCC00";
+    this.fillStyle = config.fillStyle || "#FFFF00";
 
-    this.selectedStyle = config.selectedStyle || "#CC0000";
+    this.alpha = config.alpha || 1;
+
+    this.selectedStyle = config.selectedStyle || "#FF0000";
     this.normalStyle = this.fillStyle;
     this.strokeStyle = this.normalStyle;
     this.selected = false;
