@@ -19,7 +19,7 @@ function(Rectangle){
         br = this.object.getBottomRight(),
         ow = this.object.getWidth(),
         oh = this.object.getHeight(),
-        alpha = 0.6,
+        alpha = 0.2,
         topLeft = {x: tl.x-ofh, y: tl.y-ofh, width: h, height: h,fillStyle: fs,alpha: alpha},
         topRight = {x: tr.x-ofh, y: tr.y-ofh, width: h, height: h, fillStyle: fs,alpha:alpha},
         bottomLeft = {x: bl.x-ofh, y: bl.y-ofh,width: h, height: h, fillStyle: fs,alpha:alpha},

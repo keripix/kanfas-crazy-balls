@@ -16,6 +16,7 @@ function(Shape, ObjectUtil){
      */
     draw: function(ctx){
       ctx.fillStyle = this.fillStyle;
+      ctx.globalAlpha = this.alpha;
       ctx.fillRect(this.x, this.y, this.width, this.height);
 
       if (this.selected) {
