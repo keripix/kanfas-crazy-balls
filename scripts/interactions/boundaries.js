@@ -32,6 +32,7 @@ function(BoundedRectangle){
       var me = this,
           ctx = me.ctx,
           objDraw = obj['draw'],
+          objMove = obj['move'],
           boundedRects = new BoundedRectangle(obj);
 
       obj.draw = function(){
@@ -39,6 +40,13 @@ function(BoundedRectangle){
         objDraw.call(obj, ctx);
 
         boundedRects.draw(ctx);
+      };
+
+      obj.move = function(){
+        obj.selected = false;
+        objMove.apply(obj, arguments);
+
+        boundedRects.move(arguments);
       };
     },
 

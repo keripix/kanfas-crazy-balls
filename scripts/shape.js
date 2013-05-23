@@ -25,6 +25,14 @@ define(function(){
   }
 
   Shape.prototype = {
+    getX: function(){
+      return this.x;
+    },
+
+    getY: function(){
+      return this.y;
+    },
+
     getTopLeft: function(){
       return {x: this.x, y: this.y};
     },

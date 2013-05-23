@@ -2,8 +2,9 @@ define(["shapes/rectangle"],
 function(Rectangle){
 
   function BoundedRectangle(obj, config){
-    this.boundedRects=[];
+    this.boundedRects={};
     this.object = obj;
+    this.ofh = 0;
 
     return this.createBoundedRectangles(config || {});
   }
@@ -27,15 +28,15 @@ function(Rectangle){
         bottomMiddle = {x: bl.x-ofh+ow/2,y:bl.y-ofh,width:h,height:h,fillStyle:fs},
         leftMiddle = {x: tl.x-ofh,y:tl.y-ofh+oh/2,width:h,height:h,fillStyle:fs};
 
-
-    this.boundedRects.push(new Rectangle(topLeft));
-    this.boundedRects.push(new Rectangle(topRight));
-    this.boundedRects.push(new Rectangle(bottomLeft));
-    this.boundedRects.push(new Rectangle(bottomRight));
-    this.boundedRects.push(new Rectangle(topMiddle));
-    this.boundedRects.push(new Rectangle(rightMiddle));
-    this.boundedRects.push(new Rectangle(bottomMiddle));
-    this.boundedRects.push(new Rectangle(leftMiddle));
+    this.boundedRects['topLeft'] = new Rectangle(topLeft);
+    this.boundedRects['topRight'] = new Rectangle(topRight);
+    this.boundedRects['bottomLeft'] = new Rectangle(bottomLeft);
+    this.boundedRects['bottomRight'] = new Rectangle(bottomRight);
+    this.boundedRects['topMiddle'] = new Rectangle(topMiddle);
+    this.boundedRects['rightMiddle'] = new Rectangle(rightMiddle);
+    this.boundedRects['bottomMiddle'] = new Rectangle(bottomMiddle);
+    this.boundedRects['leftMiddle'] = new Rectangle(leftMiddle);
+    this.ofh = ofh;
 
     return this;
   };
@@ -45,9 +46,28 @@ function(Rectangle){
   },
 
   BoundedRectangle.prototype.draw = function(ctx) {
-    this.boundedRects.forEach(function(obj){
-      obj.draw(ctx);
-    });
+    for (var i in this.boundedRects){
+      this.boundedRects[i].draw(ctx);
+    }
+  };
+
+  BoundedRectangle.prototype.move = function(x, y){
+    // get the position of the object first
+    var x = this.object.getX()-this.ofh,
+        y = this.object.getY()-this.ofh,
+        width = this.object.getWidth();
+        height = this.object.getHeight(),
+        midX = width/2,
+        midY = height/2;
+
+    this.boundedRects.topLeft.move(x,y);
+    this.boundedRects.topRight.move(x+width,y);
+    this.boundedRects.bottomLeft.move(x,y+height)
+    this.boundedRects.bottomRight.move(x+width,y+height);
+    this.boundedRects.topMiddle.move(x+midX,y);
+    this.boundedRects.rightMiddle.move(x+width,y+midY);
+    this.boundedRects.bottomMiddle.move(x+midX,y+height);
+    this.boundedRects.leftMiddle.move(x,y+midY);
   };
 
   BoundedRectangle.prototype.isPointInsideMe = function(x, y) {
