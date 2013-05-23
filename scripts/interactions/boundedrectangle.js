@@ -1,10 +1,12 @@
 define(["shapes/rectangle"],
 function(Rectangle){
 
-  function BoundedRectangle(obj, config){
+  function BoundedRectangle(obj, canvas, config){
+    this.canvas = canvas;
     this.boundedRects={};
     this.object = obj;
     this.ofh = 0;
+    this.captured = false;
 
     return this.createBoundedRectangles(config || {});
   }
@@ -72,18 +74,59 @@ function(Rectangle){
   };
 
   BoundedRectangle.prototype.isPointInsideMe = function(x, y) {
-    return true;
+    var overBound = undefined;
+
+    for (var i in this.boundedRects){
+      if (this.boundedRects[i].isPointInsideMe(x, y)){
+        overBound = i;
+        break;
+      }
+    }
+
+    return overBound;
   };
 
   BoundedRectangle.prototype.onMouseMove = function(point) {
-    if (this.isPointInsideMe(point.x, point.y)){
-      return true;
+    var overBound = this.isPointInsideMe(point.x, point.y);
+
+    if (overBound !== undefined){
+      this.captured = true;
+      switch(overBound){
+        case 'topLeft':
+          this.canvas.style.cursor = 'nw-resize';
+          break;
+        case 'topRight':
+          this.canvas.style.cursor = 'ne-resize';
+          break;
+        case 'bottomRight':
+          this.canvas.style.cursor = 'se-resize';
+          break;
+        case 'bottomLeft':
+          this.canvas.style.cursor = 'sw-resize';
+          break;
+        case 'topMiddle':
+          this.canvas.style.cursor = 'n-resize';
+          break;
+        case 'rightMiddle':
+          this.canvas.style.cursor = 'e-resize';
+          break;
+        case 'bottomMiddle':
+          this.canvas.style.cursor = 's-resize';
+          break;
+        case 'leftMiddle':
+          this.canvas.style.cursor = 'w-resize';
+          break;
+      }
+    } else {
+      if (this.captured) {
+        this.canvas.style.cursor = 'auto';
+      }
     }
-    return false;
   };
 
   BoundedRectangle.prototype.getSubscriptions = function(){
     return {
+      scope: this,
       'mouse.move': this.onMouseMove
     }
   };

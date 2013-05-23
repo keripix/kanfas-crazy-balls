@@ -33,7 +33,7 @@ function(BoundedRectangle){
           ctx = me.ctx,
           objDraw = obj['draw'],
           objMove = obj['move'],
-          boundedRects = new BoundedRectangle(obj);
+          boundedRects = new BoundedRectangle(obj, this.canvas);
 
       obj.draw = function(){
         obj.selected = false; // dont draw selection line for object
@@ -48,29 +48,12 @@ function(BoundedRectangle){
 
         boundedRects.move(arguments);
       };
+
+      this.events.addSubscriber(boundedRects);
     },
 
     isPointInsideMe: function(x, y){
       return false;
-    },
-
-    onMouseMove: function(point){
-      if (this.isPointInsideMe(point.x, point.y) === true && this.captured === false) {
-        this.captured = true;
-        this.canvas.style.cursor = 'nw-resize';
-      } else {
-        this.captured = false;
-        this.canvas.style.cursor = 'auto';
-      }
-    },
-
-    getSubscriptions: function(){
-      var me = this;
-
-      return {
-        scope: this,
-        'mouse.move': this.onMouseMove
-      };
     }
   };
 
