@@ -24,17 +24,11 @@ define(function(){
     this.selected = false;
 
     this.strokeWidth = 1;
+
+    this.canMove = true;
   }
 
   Shape.prototype = {
-    getX: function(){
-      return this.x;
-    },
-
-    getY: function(){
-      return this.y;
-    },
-
     getTopLeft: function(){
       return {x: this.x, y: this.y};
     },
@@ -46,14 +40,21 @@ define(function(){
     getBottomLeft: function(){
       return {x: this.x, y: this.y + this.height};
     },
+
     getBottomRight: function(){
       return {x: this.x + this.width, y: this.y + this.height};
     },
-    getWidth: function(){
-      return this.width;
+
+    isSelected: function(){
+      return this.selected;
     },
-    getHeight: function(){
-      return this.height;
+
+    disableMove: function(state){
+      this.canMove = !state;
+    },
+
+    canMove: function(){
+      return this.canMove;
     }
   };
 

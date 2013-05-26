@@ -1,13 +1,17 @@
+/**
+ * Responsible for adding boundaries for canvas objects.
+ *
+ * Supports just Rectangle at the moment.
+ */
 define([
   "interactions/boundedrectangle"
   ],
 function(BoundedRectangle){
-  function Boundaries(kanfas, events){
+  function Boundaries(canvas, events){
     this.events = events;
-    this.kanfas = kanfas;
 
-    this.canvas = kanfas.getCanvas();
-    this.ctx = kanfas.getContext();
+    this.canvas = canvas;
+    this.ctx = canvas.getContext('2d');
 
     this.objects = [];
 
@@ -33,7 +37,7 @@ function(BoundedRectangle){
           ctx = me.ctx,
           objDraw = obj['draw'],
           objMove = obj['move'],
-          boundedRects = new BoundedRectangle(obj, this.canvas);
+          boundedRects = new BoundedRectangle(obj, me.canvas);
 
       obj.draw = function(){
         obj.selected = false; // dont draw selection line for object
@@ -50,10 +54,6 @@ function(BoundedRectangle){
       };
 
       this.events.addSubscriber(boundedRects);
-    },
-
-    isPointInsideMe: function(x, y){
-      return false;
     }
   };
 

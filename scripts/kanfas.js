@@ -70,7 +70,6 @@ define(function(){
     },
 
     onMouseDragged: function(point){
-      console.log("mouse dragged");
     },
 
     getSubscriptions: function(){

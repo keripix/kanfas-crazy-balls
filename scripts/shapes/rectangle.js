@@ -53,8 +53,10 @@ function(Shape, ObjectUtil){
      * @param  {float} y Y Coordinate
      */
     move: function(x, y){
-      this.x = x - this.offsetX;
-      this.y = y - this.offsetY;
+      if (this.canMove) {
+        this.x = x - this.offsetX;
+        this.y = y - this.offsetY;
+      }
       return this;
     },
 
