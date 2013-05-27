@@ -1,11 +1,18 @@
+/**
+ * Simple module for some object oriented programming
+ */
 define(function(){
-  return {
-    extend: function(target, source) {
-      for (var prop in source) {
-        target[prop] = source[prop];
-      }
-
-      return target;
+  function mixin(target, source) {
+    for (var prop in source) {
+      target[prop] = source[prop];
     }
+
+    return target;
+  }
+
+  return {
+    extend: mixin,
+
+    mixin: mixin
   };
 });

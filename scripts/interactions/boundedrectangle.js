@@ -159,9 +159,9 @@ function(Rectangle){
 
     onMouseUp: function(point) {
       this.drag = false;
-      if (this.captured){
-        this.captured = false;
-      }
+      // if (this.captured){
+      //   this.captured = false;
+      // }
     },
 
     getSubscriptions: function(){

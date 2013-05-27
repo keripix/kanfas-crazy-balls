@@ -9,7 +9,6 @@ function(Shape, ObjectUtil){
     Shape.call(this, config);
   }
 
-
   Rectangle.prototype = {
     /**
      * Draw me

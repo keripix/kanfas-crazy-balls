@@ -41,14 +41,14 @@ function(BoundedRectangle){
 
       obj.draw = function(){
         obj.selected = false; // dont draw selection line for object
-        objDraw.call(obj, ctx);
+        objDraw.apply(obj, Array.prototype.slice.call(arguments, 0));
 
         boundedRects.draw(ctx);
       };
 
       obj.move = function(){
         obj.selected = false;
-        objMove.apply(obj, arguments);
+        objMove.apply(obj, Array.prototype.slice.call(arguments, 0));
 
         boundedRects.move(arguments);
       };
