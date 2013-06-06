@@ -4,8 +4,14 @@ define([
 function(Rectangle){
 
   function create(type, config) {
-    if (type.toLowerCase() === "rectangle") {
+    type = type.toLowerCase();
+
+    if (type === "rectangle") {
       return Rectangle.create(config);
+    } else if (type === "circle") {
+      console.log("circle");
+    } else if (type === "image") {
+      console.log("image");
     }
   }
 
