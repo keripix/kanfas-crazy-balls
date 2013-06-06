@@ -1,8 +1,10 @@
 /**
  * This is a rectangle :D
  */
-define(["shape",
-        "utils/object"],
+define([
+  "shape",
+  "utils/object"
+  ],
 function(Shape, ObjectUtil){
 
   function Rectangle(config){
@@ -55,6 +57,7 @@ function(Shape, ObjectUtil){
       if (this.canMove) {
         this.x = x - this.offsetX;
         this.y = y - this.offsetY;
+        this.drag = true;
       }
       return this;
     },
@@ -62,21 +65,21 @@ function(Shape, ObjectUtil){
     select: function(ctx, x, y){
       this.offsetX = x - this.x;
       this.offsetY = y - this.y;
-      this.strokeStyle = this.selectedStyle;
-      this.selected = true;
+      // this.strokeStyle = this.selectedStyle;
+      // this.selected = true;
       return this;
     },
 
     deselect: function(ctx){
       this.offsetX = 0;
       this.offsetY = 0;
-      this.strokeStyle = this.normalStyle;
-      this.selected = false;
+      // this.strokeStyle = this.normalStyle;
+      // this.selected = false;
       return this;
     }
   };
 
-  ObjectUtil.extend(Rectangle.prototype, Shape.prototype);
+  ObjectUtil.inherits(Rectangle, Shape);
 
   return Rectangle;
 });

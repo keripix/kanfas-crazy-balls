@@ -18,6 +18,7 @@ function(Rectangle){
     this.ofh = 0;
     this.captured = false;
     this.drag = false;
+    this.mouseDown = false;
     this.overBound = undefined;
 
     return this.createBoundedRectangles(config || {});
@@ -109,7 +110,7 @@ function(Rectangle){
     },
 
     onMouseMove: function(point) {
-      this.overBound = ob = this.isPointInsideMe(point.x, point.y);
+      var ob = this.overBound = this.isPointInsideMe(point.x, point.y);
 
       if (ob !== undefined){
         this.captured = true;
@@ -140,12 +141,12 @@ function(Rectangle){
           break;
         }
 
-        if (this.drag) {
+        if (this.mouseDown && !this.object.isMoving()) {
           this.resize(point.x, point.y);
         }
 
       } else {
-        if (this.captured) {
+        if (this.captured && this.mouseDown) {
           this.resize(point.x, point.y);
         } else {
           this.canvas.style.cursor = 'auto';
@@ -154,14 +155,16 @@ function(Rectangle){
     },
 
     onMouseDown: function(point){
-      this.drag = true;
+      this.mouseDown = true;
     },
 
     onMouseUp: function(point) {
       this.drag = false;
-      // if (this.captured){
-      //   this.captured = false;
-      // }
+      this.mouseDown = false;
+      if (this.captured){
+        this.captured = false;
+      }
+      this.object.disableMove(false);
     },
 
     getSubscriptions: function(){

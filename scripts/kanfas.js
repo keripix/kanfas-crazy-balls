@@ -57,7 +57,6 @@ define(function(){
     onMouseReleased: function(point){
     },
 
-    // TODO not working on chrome
     onMouseDrag: function(point){
       var objects = this.state.getSelected();
 

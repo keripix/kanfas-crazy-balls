@@ -66,10 +66,6 @@ define(function(){
       }
 
       return index;
-    },
-
-    drawAll: function(){
-      return this.drawAllObjects;
     }
   };
 

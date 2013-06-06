@@ -47,7 +47,7 @@ function(BoundedRectangle){
       };
 
       obj.move = function(){
-        obj.selected = false;
+        // obj.selected = false;
         objMove.apply(obj, Array.prototype.slice.call(arguments, 0));
 
         boundedRects.move(arguments);

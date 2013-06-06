@@ -21,11 +21,13 @@ define(function(){
     this.selectedStyle = config.selectedStyle || "#FF0000";
     this.normalStyle = this.fillStyle;
     this.strokeStyle = this.normalStyle;
-    this.selected = false;
 
     this.strokeWidth = 1;
 
     this.canMove = true;
+
+    this.selected = false;
+    this.drag = false;
   }
 
   Shape.prototype = {
@@ -55,6 +57,10 @@ define(function(){
 
     canMove: function(){
       return this.canMove;
+    },
+
+    isMoving: function(){
+      return this.selected && this.drag;
     }
   };
 

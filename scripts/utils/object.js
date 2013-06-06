@@ -10,9 +10,19 @@ define(function(){
     return target;
   }
 
+  function inherits(target, source){
+    var proxy = Object.create(source.prototype);
+
+    mixin(proxy, target.prototype);
+
+    target.prototype = proxy;
+
+    return target;
+  }
+
   return {
     extend: mixin,
-
-    mixin: mixin
+    mixin: mixin,
+    inherits: inherits
   };
 });
