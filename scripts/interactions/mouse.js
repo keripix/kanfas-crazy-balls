@@ -99,5 +99,9 @@ define(function(){
     }
   };
 
-  return Mouse;
+  return {
+    init: function(canvas, events){
+      return new Mouse(canvas, events);
+    }
+  }
 });

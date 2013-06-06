@@ -81,5 +81,9 @@ function(Shape, ObjectUtil){
 
   ObjectUtil.inherits(Rectangle, Shape);
 
-  return Rectangle;
+  return {
+    create: function(config){
+      return new Rectangle(config);
+    }
+  }
 });

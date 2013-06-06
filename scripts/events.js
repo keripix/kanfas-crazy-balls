@@ -77,5 +77,9 @@ define(function(){
     }
   };
 
-  return Events;
+  return {
+    init: function(){
+      return new Events();
+    }
+  }
 });

@@ -57,5 +57,9 @@ function(BoundedRectangle){
     }
   };
 
-  return Boundaries;
+  return {
+    init: function(canvas, events){
+      return new Boundaries(canvas, events);
+    }
+  };
 });

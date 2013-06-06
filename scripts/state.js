@@ -69,5 +69,9 @@ define(function(){
     }
   };
 
-  return State;
+  return {
+    init: function(canvas, events){
+      return new State(canvas, events);
+    }
+  }
 });

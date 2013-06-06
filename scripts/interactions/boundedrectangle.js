@@ -45,14 +45,14 @@ function(Rectangle){
           bottomMiddle = {x: bl.x-ofh+ow/2,y:bl.y-ofh,width:h,height:h,fillStyle:fs,alpha:alpha},
           leftMiddle = {x: tl.x-ofh,y:tl.y-ofh+oh/2,width:h,height:h,fillStyle:fs,alpha:alpha};
 
-      this.boundedRects['topLeft'] = new Rectangle(topLeft);
-      this.boundedRects['topRight'] = new Rectangle(topRight);
-      this.boundedRects['bottomLeft'] = new Rectangle(bottomLeft);
-      this.boundedRects['bottomRight'] = new Rectangle(bottomRight);
-      this.boundedRects['topMiddle'] = new Rectangle(topMiddle);
-      this.boundedRects['rightMiddle'] = new Rectangle(rightMiddle);
-      this.boundedRects['bottomMiddle'] = new Rectangle(bottomMiddle);
-      this.boundedRects['leftMiddle'] = new Rectangle(leftMiddle);
+      this.boundedRects['topLeft'] = Rectangle.create(topLeft);
+      this.boundedRects['topRight'] = Rectangle.create(topRight);
+      this.boundedRects['bottomLeft'] = Rectangle.create(bottomLeft);
+      this.boundedRects['bottomRight'] = Rectangle.create(bottomRight);
+      this.boundedRects['topMiddle'] = Rectangle.create(topMiddle);
+      this.boundedRects['rightMiddle'] = Rectangle.create(rightMiddle);
+      this.boundedRects['bottomMiddle'] = Rectangle.create(bottomMiddle);
+      this.boundedRects['leftMiddle'] = Rectangle.create(leftMiddle);
       this.ofh = ofh;
 
       return this;
