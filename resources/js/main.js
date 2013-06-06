@@ -5,24 +5,23 @@ requirejs.config({
 requirejs(["kanfas",
           "state",
           "events",
-          "shapes/rectangle",
+          "shapes/shapefactory",
           "interactions/mouse",
           "interactions/boundaries"
           ],
-function(Kanfas, State, Events, Rectangle, Mouse, Boundaries){
-  var canvas = document.getElementById("paintarea");
-
-  var events = Events.init(canvas),
+function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
+  var canvas = document.getElementById("paintarea"),
+      events = Events.init(canvas),
       state = State.init(canvas, events),
       kanfas = Kanfas.create(canvas, state),
       mouse = Mouse.init(canvas, events),
-      rect = Rectangle.create({
+      rect = ShapeFactory.create("Rectangle", {
         width: 50,
         height: 50,
         x: 50,
         y: 50
       }),
-      rect2 = Rectangle.create({
+      rect2 = ShapeFactory.create("rectangle", {
         width: 100,
         height: 100,
         x: 110,

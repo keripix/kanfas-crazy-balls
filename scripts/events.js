@@ -81,5 +81,5 @@ define(function(){
     init: function(){
       return new Events();
     }
-  }
+  };
 });
