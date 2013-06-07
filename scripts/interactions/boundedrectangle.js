@@ -67,7 +67,7 @@ function(Rectangle){
     }
   };
 
-  BoundedRectangle.prototype.move = function(){
+  BoundedRectangle.prototype.setPosition = function(){
     // get the position of the object first
     var x = this.object.x-this.ofh,
         y = this.object.y-this.ofh,
@@ -76,14 +76,14 @@ function(Rectangle){
         midX = width/2,
         midY = height/2;
 
-    this.boundedRects.topLeft.move(x,y);
-    this.boundedRects.topRight.move(x+width,y);
-    this.boundedRects.bottomLeft.move(x,y+height);
-    this.boundedRects.bottomRight.move(x+width,y+height);
-    this.boundedRects.topMiddle.move(x+midX,y);
-    this.boundedRects.rightMiddle.move(x+width,y+midY);
-    this.boundedRects.bottomMiddle.move(x+midX,y+height);
-    this.boundedRects.leftMiddle.move(x,y+midY);
+    this.boundedRects.topLeft.setPosition(x,y);
+    this.boundedRects.topRight.setPosition(x+width,y);
+    this.boundedRects.bottomLeft.setPosition(x,y+height);
+    this.boundedRects.bottomRight.setPosition(x+width,y+height);
+    this.boundedRects.topMiddle.setPosition(x+midX,y);
+    this.boundedRects.rightMiddle.setPosition(x+width,y+midY);
+    this.boundedRects.bottomMiddle.setPosition(x+midX,y+height);
+    this.boundedRects.leftMiddle.setPosition(x,y+midY);
   };
 
   BoundedRectangle.prototype.resize = function(x, y){

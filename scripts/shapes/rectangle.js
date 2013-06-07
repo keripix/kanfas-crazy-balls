@@ -52,7 +52,7 @@ function(Shape, ObjectUtil){
    * @param  {float} x X Coordinate
    * @param  {float} y Y Coordinate
    */
-  Rectangle.prototype.move = function(x, y){
+  Rectangle.prototype.setPosition = function(x, y){
     if (this.canMove) {
       this.x = x - this.offsetX;
       this.y = y - this.offsetY;

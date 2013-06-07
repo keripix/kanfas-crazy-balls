@@ -35,21 +35,24 @@ function(BoundedRectangle){
     var me = this,
         ctx = me.ctx,
         objDraw = obj['draw'],
-        objMove = obj['move'],
+        objMove = obj['setPosition'],
         boundedRects = BoundedRectangle.create(obj, me.canvas);
 
     obj.draw = function(){
-      obj.selected = false; // dont draw selection line for object
-      objDraw.apply(obj, Array.prototype.slice.call(arguments, 0));
+      var args = Array.prototype.slice.call(arguments, 0);
 
-      boundedRects.draw(ctx);
+      obj.selected = false; // dont draw selection line for object
+      objDraw.apply(obj, args);
+
+      boundedRects.draw(args);
     };
 
-    obj.move = function(){
+    obj.setPosition = function(){
       // obj.selected = false;
-      objMove.apply(obj, Array.prototype.slice.call(arguments, 0));
+      var args = Array.prototype.slice.call(arguments, 0);
+      objMove.apply(obj, args);
 
-      boundedRects.move(arguments);
+      boundedRects.setPosition(args);
     };
 
     this.events.addSubscriber(boundedRects);

@@ -19,8 +19,13 @@ define(function(){
     return this.ctx;
   };
 
-  Kanfas.prototype.add = function(object){
-    this.state.addObject(object);
+  Kanfas.prototype.add = function(){
+    var args = Array.prototype.slice.call(arguments, 0);
+
+    args.forEach(function(o){
+      this.state.addObject(o);
+    }, this);
+
     return this;
   };
 
@@ -60,7 +65,7 @@ define(function(){
     var objects = this.state.getSelected();
 
     objects.forEach(function(obj){
-      obj.move(point.x, point.y);
+      obj.setPosition(point.x, point.y);
     }, this);
 
     this.clear();
