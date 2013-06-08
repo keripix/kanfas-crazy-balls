@@ -13,13 +13,20 @@ function(Rectangle){
   function BoundedRectangle(obj, canvas, config){
     this.canvas = canvas;
     this.ctx = canvas.getContext('2d');
+
     this.boundedRects={};
     this.object = obj;
+
     this.ofh = 0;
+
     this.captured = false;
     this.drag = false;
     this.mouseDown = false;
     this.overBound = undefined;
+
+    this.needsToResize = false;
+
+    obj.boundedRectangles = this;
 
     return this.createBoundedRectangles(config || {});
   }
@@ -67,14 +74,17 @@ function(Rectangle){
     }
   };
 
-  BoundedRectangle.prototype.setPosition = function(){
+  BoundedRectangle.prototype.setPosition = function(newX, newY){
     // get the position of the object first
-    var x = this.object.x-this.ofh,
-        y = this.object.y-this.ofh,
+    var x = newX || this.object.x,
+        y = newY || this.object.y,
         width = this.object.width,
         height = this.object.height,
         midX = width/2,
         midY = height/2;
+
+    x -= this.ofh;
+    y -= this.ofh;
 
     this.boundedRects.topLeft.setPosition(x,y);
     this.boundedRects.topRight.setPosition(x+width,y);
@@ -89,14 +99,15 @@ function(Rectangle){
   BoundedRectangle.prototype.resize = function(x, y){
     var oX = this.object.x,
         oY = this.object.y;
-    this.object.disableMove(true);
-    this.object.width = x - oX;
-    this.object.height = y - oY;
-    this.object.draw(this.ctx);
+
+    this.object.disableMove()
+               .setDimension(x - oX, y - oY)
+               .draw(this.ctx);
+    this.setPosition();
   };
 
   BoundedRectangle.prototype.isPointInsideMe = function(x, y) {
-    var overBound = undefined;
+    var overBound;
 
     for (var i in this.boundedRects){
       if (this.boundedRects[i].isPointInsideMe(x, y)){
@@ -108,48 +119,63 @@ function(Rectangle){
     return overBound;
   };
 
+  BoundedRectangle.prototype.topLeftCaptured = function(x, y) {
+    this.canvas.style.cursor = 'nw-resize';
+  };
+
+  BoundedRectangle.prototype.topRightCaptured = function(x, y) {
+    this.canvas.style.cursor = 'ne-resize';
+
+    if (this.needsToResize){
+      // this.setPosition(this.object.x, this.object.y - y);
+      this.resize(x, y);
+    }
+  };
+
+  BoundedRectangle.prototype.bottomRightCaptured = function(x, y) {
+    this.canvas.style.cursor = 'se-resize';
+
+    this.needsToResize && this.resize(x, y);
+  };
+
+  BoundedRectangle.prototype.bottomLeftCaptured = function(x, y) {
+    this.canvas.style.cursor = 'sw-resize';
+  };
+
+  BoundedRectangle.prototype.topMiddleCaptured = function(x, y) {
+    this.canvas.style.cursor = 'n-resize';
+  };
+
+  BoundedRectangle.prototype.rightMiddleCaptured = function(x, y) {
+    this.canvas.style.cursor = 'e-resize';
+  };
+
+  BoundedRectangle.prototype.bottomMiddleCaptured = function(x, y) {
+    this.canvas.style.cursor = 's-resize';
+  };
+
+  BoundedRectangle.prototype.leftMiddleCaptured = function(x, y) {
+    this.canvas.style.cursor = 'w-resize';
+  };
+
   BoundedRectangle.prototype.onMouseMove = function(point) {
-    var ob = this.overBound = this.isPointInsideMe(point.x, point.y);
+    var ob = this.isPointInsideMe(point.x, point.y);
 
     if (ob !== undefined){
+      this.overBound = ob;
       this.captured = true;
-      switch(ob){
-      case 'topLeft':
-        this.canvas.style.cursor = 'nw-resize';
-        break;
-      case 'topRight':
-        this.canvas.style.cursor = 'ne-resize';
-        break;
-      case 'bottomRight':
-        this.canvas.style.cursor = 'se-resize';
-        break;
-      case 'bottomLeft':
-        this.canvas.style.cursor = 'sw-resize';
-        break;
-      case 'topMiddle':
-        this.canvas.style.cursor = 'n-resize';
-        break;
-      case 'rightMiddle':
-        this.canvas.style.cursor = 'e-resize';
-        break;
-      case 'bottomMiddle':
-        this.canvas.style.cursor = 's-resize';
-        break;
-      case 'leftMiddle':
-        this.canvas.style.cursor = 'w-resize';
-        break;
+
+      if (this.mouseDown && this.object.isMoving() === false) {
+        this.needsToResize = true;
       }
 
-      if (this.mouseDown && !this.object.isMoving()) {
-        this.resize(point.x, point.y);
-      }
+      this[this.overBound + 'Captured'](point.x, point.y);
 
-    } else {
-      if (this.captured && this.mouseDown) {
-        this.resize(point.x, point.y);
-      } else {
-        this.canvas.style.cursor = 'auto';
-      }
+    } else if (this.captured && this.mouseDown && this.object.isMoving() === false) {
+      this[this.overBound + 'Captured'](point.x, point.y);
+    }
+    else {
+      this.resetState();
     }
   };
 
@@ -158,12 +184,21 @@ function(Rectangle){
   };
 
   BoundedRectangle.prototype.onMouseUp = function(point) {
+    this.resetState();
+  };
+
+  BoundedRectangle.prototype.resetState = function(){
+    this.canvas.style.cursor = 'auto';
+
     this.drag = false;
     this.mouseDown = false;
     if (this.captured){
       this.captured = false;
     }
-    this.object.disableMove(false);
+
+    this.needsToResize = false;
+
+    this.object.enableMove();
   };
 
   BoundedRectangle.prototype.getSubscriptions = function(){

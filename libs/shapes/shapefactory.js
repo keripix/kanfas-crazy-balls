@@ -3,7 +3,7 @@ define([
   ],
 function(Rectangle){
 
-  function create(type, config) {
+  function create(type, config, events) {
     type = type.toLowerCase();
 
     if (type === "rectangle") {

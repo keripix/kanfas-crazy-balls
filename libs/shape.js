@@ -24,7 +24,7 @@ define(function(){
 
     this.strokeWidth = 1;
 
-    this.canMove = true;
+    this.movable = true;
 
     this.selected = false;
     this.drag = false;
@@ -51,12 +51,18 @@ define(function(){
       return this.selected;
     },
 
-    disableMove: function(state){
-      this.canMove = !state;
+    disableMove: function(){
+      this.movable = false;
+      return this;
     },
 
-    canMove: function(){
-      return this.canMove;
+    enableMove: function(){
+      this.movable = true;
+      return this;
+    },
+
+    isMovable: function(){
+      return this.movable;
     },
 
     isMoving: function(){

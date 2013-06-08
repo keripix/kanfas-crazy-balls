@@ -53,11 +53,17 @@ function(Shape, ObjectUtil){
    * @param  {float} y Y Coordinate
    */
   Rectangle.prototype.setPosition = function(x, y){
-    if (this.canMove) {
+    if (this.movable) {
       this.x = x - this.offsetX;
       this.y = y - this.offsetY;
       this.drag = true;
     }
+    return this;
+  };
+
+  Rectangle.prototype.setDimension = function(width, height){
+    this.width = width;
+    this.height = height;
     return this;
   };
 

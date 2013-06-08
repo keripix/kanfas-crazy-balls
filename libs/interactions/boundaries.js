@@ -39,20 +39,15 @@ function(BoundedRectangle){
         boundedRects = BoundedRectangle.create(obj, me.canvas);
 
     obj.draw = function(){
-      var args = Array.prototype.slice.call(arguments, 0);
-
       obj.selected = false; // dont draw selection line for object
-      objDraw.apply(obj, args);
+      objDraw.apply(obj, arguments);
 
-      boundedRects.draw(args);
+      boundedRects.draw.apply(boundedRects, arguments);
     };
 
     obj.setPosition = function(){
-      // obj.selected = false;
-      var args = Array.prototype.slice.call(arguments, 0);
-      objMove.apply(obj, args);
-
-      boundedRects.setPosition(args);
+      objMove.apply(obj, arguments);
+      boundedRects.setPosition.apply(boundedRects, []);
     };
 
     this.events.addSubscriber(boundedRects);
