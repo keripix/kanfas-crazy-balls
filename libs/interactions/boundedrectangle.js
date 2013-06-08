@@ -74,6 +74,38 @@ function(Rectangle){
     }
   };
 
+  BoundedRectangle.prototype.flip = function(type){
+    var temp1, temp2, temp3;
+
+    if (type === "horizontal") {
+      temp1 = this.boundedRects.bottomLeft;
+      temp2 = this.boundedRects.bottomMiddle;
+      temp3 = this.boundedRects.bottomRight;
+
+      this.boundedRects.bottomLeft = this.boundedRects.topLeft;
+      this.boundedRects.bottomMiddle = this.boundedRects.topMiddle;
+      this.boundedRects.bottomRight = thie.boundedRects.topRight;
+
+      this.boundedRects.topLeft = temp1;
+      this.boundedRects.topMiddle = temp2;
+      this.boundedRects.topRight = temp3;
+    } else if (type === "vertical") {
+      temp1 = this.boundedRects.topLeft;
+      temp2 = this.boundedRects.leftMiddle;
+      temp3 = this.boundedRects.bottomLeft;
+
+      this.boundedRects.topLeft = this.boundedRects.topRight;
+      this.boundedRects.leftMiddle = this.boundedRects.rightMiddle;
+      this.boundedRects.bottomLeft = this.boundedRects.bottomRight;
+
+      this.boundedRects.topRight = temp1;
+      this.boundedRects.rightMiddle = temp2;
+      this.boundedRects.bottomRight = temp3;
+    }
+
+    return this;
+  };
+
   BoundedRectangle.prototype.setPosition = function(newX, newY){
     // get the position of the object first
     var x = newX || this.object.x,
