@@ -72,6 +72,8 @@ function(Rectangle){
     for (var i in this.boundedRects){
       this.boundedRects[i].draw(ctx);
     }
+
+    return this;
   };
 
   BoundedRectangle.prototype.flip = function(type){
@@ -84,7 +86,7 @@ function(Rectangle){
 
       this.boundedRects.bottomLeft = this.boundedRects.topLeft;
       this.boundedRects.bottomMiddle = this.boundedRects.topMiddle;
-      this.boundedRects.bottomRight = thie.boundedRects.topRight;
+      this.boundedRects.bottomRight = this.boundedRects.topRight;
 
       this.boundedRects.topLeft = temp1;
       this.boundedRects.topMiddle = temp2;
@@ -126,6 +128,8 @@ function(Rectangle){
     this.boundedRects.rightMiddle.setPosition(x+width,y+midY);
     this.boundedRects.bottomMiddle.setPosition(x+midX,y+height);
     this.boundedRects.leftMiddle.setPosition(x,y+midY);
+
+    return this;
   };
 
   BoundedRectangle.prototype.resize = function(x, y){
@@ -133,9 +137,10 @@ function(Rectangle){
         oY = this.object.y;
 
     this.object.disableMove()
-               .setDimension(x - oX, y - oY)
-               .draw(this.ctx);
+               .setDimension(x - oX, y - oY);
     this.setPosition();
+
+    return this;
   };
 
   BoundedRectangle.prototype.isPointInsideMe = function(x, y) {
@@ -159,8 +164,12 @@ function(Rectangle){
     this.canvas.style.cursor = 'ne-resize';
 
     if (this.needsToResize){
-      // this.setPosition(this.object.x, this.object.y - y);
-      this.resize(x, y);
+      this.object.enableMove();
+      this.object.setPosition(this.object.x, y);
+      this.resize(x);
+        // .setDimension(this.object.width + (x - this.object.x - this.object.width), this.object.height + (y - this.object.y - this.object.height));
+      // this.resize(x, y);
+      this.object.draw(this.ctx);
     }
   };
 
@@ -168,6 +177,7 @@ function(Rectangle){
     this.canvas.style.cursor = 'se-resize';
 
     this.needsToResize && this.resize(x, y);
+    this.object.draw(this.ctx);
   };
 
   BoundedRectangle.prototype.bottomLeftCaptured = function(x, y) {
@@ -194,14 +204,14 @@ function(Rectangle){
     var ob = this.isPointInsideMe(point.x, point.y);
 
     if (ob !== undefined){
-      this.overBound = ob;
       this.captured = true;
 
       if (this.mouseDown && this.object.isMoving() === false) {
         this.needsToResize = true;
       }
 
-      this[this.overBound + 'Captured'](point.x, point.y);
+      this.overBound = ob;
+      this[ob + 'Captured'](point.x, point.y);
 
     } else if (this.captured && this.mouseDown && this.object.isMoving() === false) {
       this[this.overBound + 'Captured'](point.x, point.y);

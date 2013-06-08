@@ -65,11 +65,10 @@ define(function(){
     var objects = this.state.getSelected();
 
     objects.forEach(function(obj){
-      obj.setPosition(point.x, point.y);
+      obj.clear(this.ctx).setPosition(point.x, point.y);
     }, this);
 
-    this.clear();
-    this.draw();
+    this.draw(this.ctx);
   };
 
   Kanfas.prototype.onMouseDragged = function(point){

@@ -43,11 +43,21 @@ function(BoundedRectangle){
       objDraw.apply(obj, arguments);
 
       boundedRects.draw.apply(boundedRects, arguments);
+
+      return obj;
     };
 
     obj.setPosition = function(){
       objMove.apply(obj, arguments);
       boundedRects.setPosition.apply(boundedRects, []);
+
+      return obj;
+    };
+
+    obj.clear = function(){
+      ctx.clearRect(obj.x - 4, obj.y - 4, obj.width + 8, obj.height + 8);
+
+      return obj;
     };
 
     this.events.addSubscriber(boundedRects);
