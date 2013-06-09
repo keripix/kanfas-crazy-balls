@@ -4,7 +4,9 @@
 define(function(){
   function mixin(target, source) {
     for (var prop in source) {
-      target[prop] = source[prop];
+      if (hasOwnProperty.call(source, prop)) {
+        target[prop] = source[prop];
+      }
     }
 
     return target;
@@ -30,8 +32,6 @@ define(function(){
   }
 
   return {
-    extend: mixin,
-    mixin: mixin,
     inherits: inherits,
     addMethods: addMethods
   };
