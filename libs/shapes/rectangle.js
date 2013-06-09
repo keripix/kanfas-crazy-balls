@@ -47,39 +47,9 @@ function(Shape, ObjectUtil){
             && (y >= this.y) && (y <= (this.y + this.height));
   };
 
-  /**
-   * Move me somewhere
-   * @param  {float} x X Coordinate
-   * @param  {float} y Y Coordinate
-   */
-  Rectangle.prototype.setPosition = function(x, y){
-    if (this.movable) {
-      this.x = x - this.offsetX;
-      this.y = y - this.offsetY;
-      this.drag = true;
-    }
-    return this;
-  };
-
   Rectangle.prototype.setDimension = function(width, height){
     this.width = width;
     this.height = height;
-    return this;
-  };
-
-  Rectangle.prototype.select = function(ctx, x, y){
-    this.offsetX = x - this.x;
-    this.offsetY = y - this.y;
-    // this.strokeStyle = this.selectedStyle;
-    // this.selected = true;
-    return this;
-  };
-
-  Rectangle.prototype.deselect = function(ctx){
-    this.offsetX = 0;
-    this.offsetY = 0;
-    // this.strokeStyle = this.normalStyle;
-    // this.selected = false;
     return this;
   };
 

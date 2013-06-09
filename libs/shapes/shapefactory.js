@@ -1,7 +1,8 @@
 define([
-  "shapes/rectangle"
+  "shapes/rectangle",
+  "shapes/circle"
   ],
-function(Rectangle){
+function(Rectangle, Circle){
 
   function create(type, config, events) {
     type = type.toLowerCase();
@@ -9,7 +10,7 @@ function(Rectangle){
     if (type === "rectangle") {
       return Rectangle.create(config);
     } else if (type === "circle") {
-      console.log("circle");
+      return Circle.create(config);
     } else if (type === "image") {
       console.log("image");
     }

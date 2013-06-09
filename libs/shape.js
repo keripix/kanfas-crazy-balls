@@ -47,6 +47,22 @@ define(function(){
       return {x: this.x + this.width, y: this.y + this.height};
     },
 
+    select: function(ctx, x, y){
+      this.offsetX = x - this.x;
+      this.offsetY = y - this.y;
+      // this.strokeStyle = this.selectedStyle;
+      // this.selected = true;
+      return this;
+    },
+
+    deselect: function(ctx){
+      this.offsetX = 0;
+      this.offsetY = 0;
+      // this.strokeStyle = this.normalStyle;
+      // this.selected = false;
+      return this;
+    },
+
     isSelected: function(){
       return this.selected;
     },
@@ -58,6 +74,15 @@ define(function(){
 
     enableMove: function(){
       this.movable = true;
+      return this;
+    },
+
+    setPosition: function(x, y){
+      if (this.movable) {
+        this.x = x - this.offsetX;
+        this.y = y - this.offsetY;
+        this.drag = true;
+      }
       return this;
     },
 
