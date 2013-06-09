@@ -54,4 +54,55 @@ function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
   kanfas.add(rect, rect2, rect3, circle, circle2);
 
   kanfas.draw();
+
+  // Polyfill untuk requestAnimation
+  (function() {
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+
+    if (!window.requestAnimationFrame)
+        window.requestAnimationFrame = function(callback, element) {
+            var currTime = new Date().getTime();
+            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+              timeToCall);
+            lastTime = currTime + timeToCall;
+            return id;
+        };
+
+    if (!window.cancelAnimationFrame)
+        window.cancelAnimationFrame = function(id) {
+            clearTimeout(id);
+        };
+  }());
+
+
+  var xOrientation = 5,
+      yOrientation = 4,
+      offsetX = xOrientation*2 + 1,
+      offsetY = yOrientation*2 + 1,
+      ctx = kanfas.ctx;
+
+  function animate(){
+    circle2.clear(ctx, offsetX, offsetY)
+      .setPosition(circle2.x+xOrientation, circle2.y+yOrientation);
+
+    if (circle2.x - circle2.radius <= 0 || circle2.x + circle2.radius >= canvas.width){
+      xOrientation *= -1;
+    }
+
+    if (circle2.y - circle2.radius <= 0 || circle2.y + circle2.radius >= canvas.height){
+      yOrientation *= -1;
+    }
+
+    kanfas.draw();
+    requestAnimationFrame(animate);
+  }
+
+  // animate();
 });

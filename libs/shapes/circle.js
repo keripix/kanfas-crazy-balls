@@ -16,8 +16,10 @@ function(Shape, ObjectUtil, MathUtil){
     return this;
   };
 
-  Circle.prototype.clear = function(ctx) {
-    ctx.clearRect(this.x - this.radius, this.y - this.radius, this.width, this.height);
+  Circle.prototype.clear = function(ctx, offsetX, offsetY) {
+    offsetX = offsetX || 8;
+    offsetY = offsetY || 8;
+    ctx.clearRect(this.x - this.radius - 2, this.y - this.radius - 2, this.width + offsetX, this.height + offsetY);
     return this;
   };
 
@@ -34,6 +36,10 @@ function(Shape, ObjectUtil, MathUtil){
    */
   Circle.prototype.isPointInsideMe = function(x, y) {
     return MathUtil.getDistance({x: x,y: y}, {x: this.x, y: this.y}) <= this.radius;
+  };
+
+  Circle.prototype.getRadius = function() {
+    return this.radius;
   };
 
   ObjectUtil.inherits(Circle, Shape);

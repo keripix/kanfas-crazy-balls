@@ -5,7 +5,7 @@
  ☐ Memilih objek dengan urutan stack yang benar
  ☐ Memutar objek
  ☐ Mengubah ukuran objek
- ☐ Mendukung tipe objek lain
+ ☐ Lingkaran
  ☐ Dapat melakukan removeListener untuk module EventJs
  ☐ Unit test (A Must)
  ☐ Grouping
