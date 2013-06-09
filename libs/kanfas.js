@@ -13,14 +13,6 @@ function(ObjectUtil){
   }
 
   ObjectUtil.addMethods(Kanfas, {
-    getCanvas: function(){
-      return this.canvas;
-    },
-
-    getContext: function(){
-      return this.ctx;
-    },
-
     add: function(){
       var args = Array.prototype.slice.call(arguments, 0);
 

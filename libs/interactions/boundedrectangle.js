@@ -31,6 +31,9 @@ function(Rectangle){
     return this.createBoundedRectangles(config || {});
   }
 
+  /**
+   * TODO What if all of these bounded rectangles are added to kanfas?
+   */
   BoundedRectangle.prototype.createBoundedRectangles = function(config){
     var h = config.size || 8,
         ofh = h/2,
