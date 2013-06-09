@@ -41,11 +41,17 @@ function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
         y: 250,
         fillStyle: "#004040"
       }),
+      circle2 = ShapeFactory.create("circle", {
+        radius: 50,
+        x: 300,
+        y: 250,
+        fillStyle: "#00C0C0"
+      }),
       boundaries = Boundaries.init(canvas, events);
 
   events.addSubscriber(kanfas);
 
-  kanfas.add(rect, rect2, rect3, circle);
+  kanfas.add(rect, rect2, rect3, circle, circle2);
 
   kanfas.draw();
 });
