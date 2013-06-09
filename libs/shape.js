@@ -33,6 +33,14 @@ function(ObjectUtil){
   }
 
   ObjectUtil.addMethods(Shape, {
+    /**
+     * Clear me out of this canvas
+     */
+    clear: function(ctx){
+      ctx.clearRect(this.x, this.y, this.width, this.height);
+      return this;
+    },
+
     getTopLeft: function(){
       return {x: this.x, y: this.y};
     },

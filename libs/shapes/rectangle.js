@@ -29,14 +29,6 @@ function(Shape, ObjectUtil){
     },
 
     /**
-     * Clear me out of this canvas
-     */
-    clear: function(ctx){
-      ctx.clearRect(this.x, this.y, this.width, this.height);
-      return this;
-    },
-
-    /**
      * Check wether the points are inside of this object
      *
      * @param  {float} x Mouse X position
