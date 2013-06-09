@@ -1,7 +1,7 @@
 /**
  * Ini module untuk apa?
  */
-define(["utils/object"],
+define(["utils/objectutil"],
 function(ObjectUtil){
 
   function Kanfas(canvas, state){

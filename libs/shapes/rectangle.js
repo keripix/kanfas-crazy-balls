@@ -3,7 +3,7 @@
  */
 define([
   "shape",
-  "utils/object"
+  "utils/objectutil"
   ],
 function(Shape, ObjectUtil){
 

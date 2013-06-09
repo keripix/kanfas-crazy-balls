@@ -1,7 +1,9 @@
 /**
  * This is the base prototype for all shapes
  */
-define(function(){
+define(["utils/objectutil"],
+function(ObjectUtil){
+
   function Shape(config){
     this.x = config.x || 0;
     this.y = config.y || 0;
@@ -30,7 +32,7 @@ define(function(){
     this.drag = false;
   }
 
-  Shape.prototype = {
+  ObjectUtil.addMethods(Shape, {
     getTopLeft: function(){
       return {x: this.x, y: this.y};
     },
@@ -93,7 +95,7 @@ define(function(){
     isMoving: function(){
       return this.selected && this.drag;
     }
-  };
+  });
 
   return Shape;
 });
