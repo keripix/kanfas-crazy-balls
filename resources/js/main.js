@@ -41,8 +41,5 @@ function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
 
   kanfas.add(rect, rect2, rect3);
 
-  // add boundaries controllers to rect and rect2
-  boundaries.addTo(rect, rect2, rect3);
-
   kanfas.draw();
 });

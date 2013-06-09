@@ -55,7 +55,7 @@ function(BoundedRectangle){
     };
 
     obj.clear = function(){
-      ctx.clearRect(obj.x - 4, obj.y - 4, obj.width + 8, obj.height + 8);
+      ctx.clearRect(obj.x - 4, obj.y - 4, obj.width + 15, obj.height + 15);
 
       return obj;
     };

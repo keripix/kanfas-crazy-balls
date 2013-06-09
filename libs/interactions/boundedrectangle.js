@@ -139,6 +139,7 @@ function(Rectangle){
     this.object.disableMove()
                .setDimension(x - oX, y - oY);
     this.setPosition();
+    this.object.clear();
 
     return this;
   };
