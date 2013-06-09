@@ -20,9 +20,19 @@ define(function(){
     return target;
   }
 
+  function addMethods(constructor, methods){
+    var i;
+    for (i in methods){
+      constructor.prototype[i] = methods[i];
+    }
+
+    return constructor;
+  }
+
   return {
     extend: mixin,
     mixin: mixin,
-    inherits: inherits
+    inherits: inherits,
+    addMethods: addMethods
   };
 });
