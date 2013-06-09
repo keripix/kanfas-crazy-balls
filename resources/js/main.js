@@ -26,26 +26,26 @@ function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
         height: 100,
         x: 110,
         y: 110,
-        fillStyle: "red"
+        fillStyle: "#C0392B"
       }),
       rect3 = ShapeFactory.create("rectangle", {
         width: 200,
         height: 50,
         x: 300,
         y: 100,
-        fillStyle: "#00C0C0"
+        fillStyle: "#9B59B6"
       }),
       circle = ShapeFactory.create("circle", {
         radius: 30,
         x: 250,
         y: 250,
-        fillStyle: "#004040"
+        fillStyle: "#2980B9"
       }),
       circle2 = ShapeFactory.create("circle", {
         radius: 50,
         x: 300,
         y: 250,
-        fillStyle: "#00C0C0"
+        fillStyle: "#16A085"
       }),
       boundaries = Boundaries.init(canvas, events);
 

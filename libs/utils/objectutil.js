@@ -2,6 +2,7 @@
  * Simple module for some object oriented programming
  */
 define(function(){
+
   function mixin(target, source) {
     for (var prop in source) {
       if (hasOwnProperty.call(source, prop)) {

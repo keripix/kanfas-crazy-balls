@@ -16,11 +16,11 @@ function(ObjectUtil){
 
     this.rotation = config.rotation || 0;
 
-    this.fillStyle = config.fillStyle || "#FFFF00";
+    this.fillStyle = config.fillStyle || "#F1C40F";
 
     this.alpha = config.alpha || 1;
 
-    this.selectedStyle = config.selectedStyle || "#FF0000";
+    this.selectedStyle = config.selectedStyle || "#F1C40F";
     this.normalStyle = this.fillStyle;
     this.strokeStyle = this.normalStyle;
 
