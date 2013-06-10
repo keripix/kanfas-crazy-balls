@@ -10,7 +10,7 @@ define(function(){
       }
     }
 
-    return target;
+    return this;
   }
 
   function inherits(target, source){
@@ -20,7 +20,7 @@ define(function(){
 
     target.prototype = proxy;
 
-    return target;
+    return this;
   }
 
   function addMethods(constructor, methods){
@@ -29,7 +29,7 @@ define(function(){
       constructor.prototype[i] = methods[i];
     }
 
-    return constructor;
+    return this;
   }
 
   return {

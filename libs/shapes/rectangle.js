@@ -45,9 +45,8 @@ function(Shape, ObjectUtil){
       this.height = height;
       return this;
     }
-  });
-
-  ObjectUtil.inherits(Rectangle, Shape);
+  })
+  .inherits(Rectangle, Shape);
 
   return {
     create: function(config){

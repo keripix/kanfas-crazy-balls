@@ -42,9 +42,8 @@ function(Shape, ObjectUtil, MathUtil){
     getRadius: function() {
       return this.radius;
     }
-  });
-
-  ObjectUtil.inherits(Circle, Shape);
+  })
+  .inherits(Circle, Shape);
 
   return {
     create: function(config){
