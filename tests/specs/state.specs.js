@@ -46,17 +46,17 @@ function(State){
       });
 
       it("Should remove selected object", function(){
-        state.addSelected(obj).addSelected({x:5});
+        var obj2 = {x:5};
+        state.addSelected(obj).addSelected(obj2);
 
         var removed = state.removeSelected(obj);
-
         expect(removed).toEqual(obj);
         expect(state.selections.length).toEqual(1);
 
         expect(state.removeSelected({x:10})).toBeUndefined();
         expect(state.selections.length).toEqual(1);
 
-        removed = state.removeSelected({x:5});
+        removed = state.removeSelected(obj2);
         expect(removed).toEqual({x:5});
         expect(state.selections.length).toEqual(0);
       });

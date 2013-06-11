@@ -25,7 +25,9 @@
       "./specs/state.specs.js"
       ],
     function(document) {
-      console_reporter = new jasmine.ConsoleReporter();
+      var console_reporter = new jasmine.ConsoleReporter();
+      window.console_reporter = console_reporter;
+
       jasmine.getEnv().addReporter(new jasmine.TrivialReporter());
       jasmine.getEnv().addReporter(console_reporter);
       jasmine.getEnv().execute();
