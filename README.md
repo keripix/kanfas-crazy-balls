@@ -1,19 +1,27 @@
 # Kanfas
 
-This is a learning project aiming at understanding HTML5 Canvas. The libraries included here are all experimental.
+This is an **experimental library** in which I create in order to take a dive into HTML5 Canvas. Along the way, I'm also aiming at learning how to build a modular library.
 
-Another target for this project is learning how to develop modular components, so that the final application is composed from these components. Each components should be focused on its responsibility.
+Once again, this is **experimental**. Meaning, I don't recommend anyone to use this in production. There are other, and definitely better, canvas libraries, such as [FabricJs](http://fabricjs.com/).
 
-Last, but not least, all of the components should be unit tested.
+## Target
 
-## What's not in here
+1. Modular (I've chosen AMD style with the help of RequireJS)
+2. Learning how to create better API.
+3. Unit tested (I'm using phantomjs and jasmine)
+4. Animations
+5. Physics Animations
+6. Learning performance
 
-1. Better cross browser support. Right now that's not a priority for me. But I'm hoping to dig into that area soon.
-2. Performance. Well performance is good. But right now I'm more focused on making the code works correctly.
+## Testing
 
-## Examples
+Make sure you have [phantomjs](http://phantomjs.org/) installed. Also, please install the components needed by this library:
 
-Examples which have been built during this project can be seen inside the `examples` directory.
+> $ bower install
+
+And then, to run the test, just run:
+
+> $ make test
 
 ## Learning References:
 
