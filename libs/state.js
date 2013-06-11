@@ -13,7 +13,6 @@ define(function(){
   function State(){
     this.objects = []; // Objects on the canvas
     this.dragging = false; // Am I in dragging mode at the moment?
-    this.drawAllObjects = true;
     this.selections = []; // The selected objects
   }
 
@@ -32,7 +31,6 @@ define(function(){
 
   State.prototype.addSelected = function(obj){
     if (this.findObjectPos(obj, this.selections) === -1) {
-      this.drawAllObjects = false;
       this.selections.push(obj);
     }
     return this;
@@ -55,8 +53,7 @@ define(function(){
       return;
     }
 
-    this.selections.splice(index, 1);
-    return this;
+    return this.selections.splice(index, 1)[0];
   };
 
   State.prototype.findObjectPos = function(obj, data){
