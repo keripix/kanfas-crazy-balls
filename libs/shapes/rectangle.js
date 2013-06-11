@@ -47,8 +47,7 @@ function(Shape, Events, ObjectUtil){
       return this;
     }
   })
-  .inherits(Rectangle, Shape)
-  .mixin(Rectangle, Events);
+  .inherits(Rectangle, Shape);
 
   return {
     create: function(config){

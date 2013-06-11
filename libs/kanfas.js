@@ -1,5 +1,5 @@
 /**
- * Ini module untuk apa?
+ * TODO define the proper responsibility for this module
  */
 define(["utils/objectutil"],
 function(ObjectUtil){

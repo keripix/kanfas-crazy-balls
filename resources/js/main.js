@@ -6,10 +6,9 @@ requirejs(["kanfas",
           "state",
           "events",
           "shapes/shapefactory",
-          "interactions/mouse",
-          "interactions/boundaries"
+          "interactions/mouse"
           ],
-function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
+function(Kanfas, State, Events, ShapeFactory, Mouse){
   var canvas = document.getElementById("paintarea"),
       events = Events.init(canvas),
       state = State.init(canvas, events),
@@ -46,8 +45,7 @@ function(Kanfas, State, Events, ShapeFactory, Mouse, Boundaries){
         x: 300,
         y: 250,
         fillStyle: "#16A085"
-      }),
-      boundaries = Boundaries.init(canvas, events);
+      });
 
   events.addSubscriber(kanfas);
 
