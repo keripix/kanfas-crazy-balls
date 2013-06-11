@@ -24,6 +24,7 @@ function(ObjectUtil){
     },
 
     remove: function(obj){
+      return this.state.removeObject(obj);
     },
 
     clear: function(){
@@ -32,7 +33,7 @@ function(ObjectUtil){
     },
 
     draw: function(){
-      var objects = this.state.getObjects();
+      var objects = this.state.objects;
 
       objects.forEach(function(o){
         o.draw(this.ctx);
@@ -41,7 +42,7 @@ function(ObjectUtil){
     },
 
     onMousePressed: function(point){
-      var canvasObjects = this.state.getObjects();
+      var canvasObjects = this.state.objects;
 
       canvasObjects.forEach(function(obj){
         if (obj.isPointInsideMe(point.x, point.y)){
@@ -59,7 +60,7 @@ function(ObjectUtil){
     },
 
     onMouseDrag: function(point){
-      var objects = this.state.getSelected();
+      var objects = this.state.selections;
 
       objects.forEach(function(obj){
         obj.clear(this.ctx).setPosition(point.x, point.y);

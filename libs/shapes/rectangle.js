@@ -3,9 +3,10 @@
  */
 define([
   "shape",
+  "events",
   "utils/objectutil"
   ],
-function(Shape, ObjectUtil){
+function(Shape, Events, ObjectUtil){
 
   function Rectangle(config){
     Shape.call(this, config);
@@ -46,7 +47,8 @@ function(Shape, ObjectUtil){
       return this;
     }
   })
-  .inherits(Rectangle, Shape);
+  .inherits(Rectangle, Shape)
+  .mixin(Rectangle, Events);
 
   return {
     create: function(config){

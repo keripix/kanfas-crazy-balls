@@ -18,14 +18,6 @@ function(ObjectUtil){
   }
 
   ObjectUtil.addMethods(State, {
-    getObjects: function(){
-      return this.objects;
-    },
-
-    getSelected: function(){
-      return this.selections;
-    },
-
     addObject: function(obj){
       this.objects.push(obj);
       return this;

@@ -34,6 +34,7 @@ define(function(){
 
   return {
     inherits: inherits,
-    addMethods: addMethods
+    addMethods: addMethods,
+    mixin: mixin
   };
 });
