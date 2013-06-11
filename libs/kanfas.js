@@ -23,6 +23,9 @@ function(ObjectUtil){
       return this;
     },
 
+    remove: function(obj){
+    },
+
     clear: function(){
       this.ctx.clearRect(0, 0, this.width, this.height);
       return this;

@@ -6,7 +6,7 @@ function(Kanfas, State,ShapeFactory){
 
   describe("Kanfas", function(){
     describe("Adding objects to kanfas", function(){
-      it("Should have the corect number of items", function(){
+      it("Should have the correct number of items", function(){
         kanfas.add(ShapeFactory.create("Rectangle",{
           x: 0,y:0
         }));

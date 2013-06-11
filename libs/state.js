@@ -10,7 +10,7 @@
  * 4. What to draw when the canvas request for a redraw
  */
 define(function(){
-  function State(canvas, events){
+  function State(){
     this.objects = []; // Objects on the canvas
     this.dragging = false; // Am I in dragging mode at the moment?
     this.drawAllObjects = true;
@@ -31,7 +31,7 @@ define(function(){
   };
 
   State.prototype.addSelected = function(obj){
-    if (this.findObject(obj, this.selections) === -1) {
+    if (this.findObjectPos(obj, this.selections) === -1) {
       this.drawAllObjects = false;
       this.selections.push(obj);
     }
@@ -39,11 +39,17 @@ define(function(){
   };
 
   State.prototype.removeObject = function(obj){
+    var index = this.findObjectPos(obj, this.objects);
 
+    if (index === -1){
+      return;
+    }
+
+    return this.objects.splice(index, 1)[0];
   };
 
   State.prototype.removeSelected = function(obj){
-    var index = this.findObject(obj, this.selections);
+    var index = this.findObjectPos(obj, this.selections);
 
     if (index === -1) {
       return;
@@ -53,7 +59,7 @@ define(function(){
     return this;
   };
 
-  State.prototype.findObject = function(obj, data){
+  State.prototype.findObjectPos = function(obj, data){
     var length = data.length,
         index = -1;
 
@@ -68,8 +74,8 @@ define(function(){
   };
 
   return {
-    init: function(canvas, events){
-      return new State(canvas, events);
+    init: function(){
+      return new State();
     }
   };
 });
