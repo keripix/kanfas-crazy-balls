@@ -24,8 +24,6 @@ define(function(){
     return this;
   };
 
-  // TODO callbackOpt tidak memaksakan struktur. Ia bisa menerima sebuah
-  // callback, dan juga objek yang mengandung konfigurasi callback
   Events.prototype.on = function(eventName, callbackFn, scope){
     scope = scope || this;
 
