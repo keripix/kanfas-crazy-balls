@@ -19,8 +19,8 @@ Priorities:
 
 Later target:
 
-1. Interactive resizing
-2. Interactive rotation
+1. Interactive resizing (boundingbox not working at the moment)
+2. Interactive rotation (boundingbox not working at the moment)
 3. Learning Performance
 4. Foundation for games
 
