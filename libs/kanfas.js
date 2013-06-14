@@ -59,11 +59,6 @@ function(ObjectUtil){
       }
 
       o.draw(this.ctx);
-
-
-      // canvasObjects.forEach(function(obj){
-
-      // }, this);
     },
 
     onMouseReleased: function(point){
