@@ -42,18 +42,26 @@ function(ObjectUtil){
     },
 
     onMousePressed: function(point){
-      var canvasObjects = this.state.objects;
+      var canvasObjects = this.state.objects,
+          length = canvasObjects.length,
+          o;
 
-      canvasObjects.forEach(function(obj){
-        if (obj.isPointInsideMe(point.x, point.y)){
-          this.state.addSelected(obj);
-          obj.select(this.ctx, point.x, point.y);
+      while(length--){
+        o = canvasObjects[length];
+
+        if (o.isPointInsideMe(point.x, point.y)){
+          this.state.addSelected(o);
+          o.select(this.ctx, point.x, point.y);
         } else {
-          this.state.removeSelected(obj);
-          obj.deselect(this.ctx);
+          this.state.removeSelected(o);
+          o.deselect(this.ctx);
         }
-        obj.draw(this.ctx);
-      }, this);
+        o.draw(this.ctx);
+      }
+
+      // canvasObjects.forEach(function(obj){
+
+      // }, this);
     },
 
     onMouseReleased: function(point){
