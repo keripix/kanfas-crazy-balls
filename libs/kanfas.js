@@ -56,8 +56,10 @@ function(ObjectUtil){
           this.state.removeSelected(o);
           o.deselect(this.ctx);
         }
-        o.draw(this.ctx);
       }
+
+      o.draw(this.ctx);
+
 
       // canvasObjects.forEach(function(obj){
 

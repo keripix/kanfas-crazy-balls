@@ -97,9 +97,5 @@ define(function(){
     }
   };
 
-  return {
-    init: function(canvas, events){
-      return new Mouse(canvas, events);
-    }
-  };
+  return Mouse;
 });
