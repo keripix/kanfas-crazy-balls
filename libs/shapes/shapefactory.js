@@ -9,9 +9,9 @@ function(Rectangle, Circle){
       type = type.toLowerCase();
 
       if (type === "rectangle") {
-        return Rectangle.create(config);
+        return new Rectangle(config);
       } else if (type === "circle") {
-        return Circle.create(config);
+        return new Circle(config);
       } else if (type === "image") {
         console.log("image");
       }

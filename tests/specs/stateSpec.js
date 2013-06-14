@@ -2,7 +2,7 @@ define([
   "state"
   ],
 function(State){
-  var state = State.init(),
+  var state = new State(),
       obj = {x:2};
 
   describe("State", function(){

@@ -45,9 +45,5 @@ function(Shape, ObjectUtil, MathUtil){
   })
   .inherits(Circle, Shape);
 
-  return {
-    create: function(config){
-      return new Circle(config);
-    }
-  }
+  return Circle;
 });

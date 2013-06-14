@@ -65,9 +65,5 @@ function(ObjectUtil){
     }
   });
 
-  return {
-    init: function(){
-      return new State();
-    }
-  };
+  return State;
 });

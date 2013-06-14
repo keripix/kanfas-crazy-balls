@@ -49,9 +49,5 @@ function(Shape, Events, ObjectUtil){
   })
   .inherits(Rectangle, Shape);
 
-  return {
-    create: function(config){
-      return new Rectangle(config);
-    }
-  };
+  return Rectangle;
 });

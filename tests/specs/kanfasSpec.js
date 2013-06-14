@@ -1,8 +1,13 @@
 define(["kanfas", "state","shapes/shapefactory"],
 function(Kanfas, State,ShapeFactory){
-  var canvas = document.getElementById('testcanvas'),
-      state = State.init(canvas, {}),
-      kanfas = Kanfas.create(canvas, state);
+  var canvas = {
+    getContext: function(){
+      return true;
+    }
+  };
+
+  var state = new State(canvas, {}),
+      kanfas = new Kanfas(canvas, state);
 
   describe("Kanfas", function(){
     describe("Adding objects to kanfas", function(){

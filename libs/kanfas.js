@@ -91,9 +91,5 @@ function(ObjectUtil){
     }
   });
 
-  return {
-    create: function(canvas, state){
-      return new Kanfas(canvas, state);
-    }
-  };
+  return Kanfas;
 });

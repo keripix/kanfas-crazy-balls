@@ -74,9 +74,5 @@ define(function(){
     return index;
   };
 
-  return {
-    init: function(){
-      return new Events();
-    }
-  };
+  return Events;
 });
