@@ -3,25 +3,30 @@ define([
   ],
 function(Events){
   var e = new Events(),
-      onSomething = function(){},
-      onThis = function(){},
-      onThat = function(){},
+      countOnSomething = 0,
+      countOnThis = 0,
+      countOnThat = 0,
+      handlers = {
+        onSomething: function(){countOnSomething++;},
+        onThis: function(){countOnThis++;},
+        onThat: function(){countOnThat++;}
+      },
       fake = {
         getSubscriptions: function(){
           return {
             scope: this,
-            "onSomething": onSomething,
-            "onThis": onThis,
-            "onThat": onThat
+            "onSomething": handlers.onSomething,
+            "onThis": handlers.onThis,
+            "onThat": handlers.onThat
           };
         }
       },
       fake2 = {
         getSubscriptions: function(){
           return {
-            "onSomething": onSomething,
-            "onThis": onThis,
-            "onThat": onThat
+            "onSomething": handlers.onSomething,
+            "onThis": handlers.onThis,
+            "onThat": handlers.onThat
           };
         }
       };
@@ -31,7 +36,7 @@ function(Events){
       it("Should add event handlers properly", function(){
         e.addSubscriber(fake);
 
-        expect(e.handlers.onSomething[0].fn).toEqual(onSomething);
+        expect(e.handlers.onSomething[0].fn).toEqual(handlers.onSomething);
         expect(e.handlers.onSomething[0].scope).toEqual(fake);
         expect(e.handlers.onSomething.length).toEqual(1);
 
@@ -43,8 +48,27 @@ function(Events){
         e.addSubscriber(fake2);
 
         expect(e.handlers.onSomething.length).toEqual(2);
-        expect(e.handlers.onSomething[1].fn).toEqual(onSomething);
+        expect(e.handlers.onSomething[1].fn).toEqual(handlers.onSomething);
         expect(e.handlers.onSomething[1].scope).toEqual(e);
+      });
+    });
+
+    describe("Firing Events", function(){
+      beforeEach(function(){
+        e.handlers = {};
+      });
+
+      it("Should call the correct handlers", function(){
+        e.addSubscriber(fake);
+        e.fireEvent("onSomething", {});
+        expect(countOnSomething).toEqual(1);
+
+        e.addSubscriber(fake2);
+        e.fireEvent("onSomething", {});
+        expect(countOnSomething).toEqual(3);
+
+        e.fireEvent("onThat");
+        expect(countOnThat).toEqual(2);
       });
     });
   });
