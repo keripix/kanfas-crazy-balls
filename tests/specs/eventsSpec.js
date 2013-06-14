@@ -106,6 +106,20 @@ function(Events){
         e.off("onSomething", handlers.onSomething);
         expect(e.handlers.onSomething.length).toEqual(0);
       });
+
+      it("Should not have any removed handlers called", function(){
+        e.addSubscriber(fake);
+        e.addSubscriber(fake2);
+        e.off("onSomething", handlers.onSomething);
+
+        e.fireEvent("onSomething");
+        expect(countOnSomething).toEqual(0);
+
+        e.fireEvent("onThat");
+        expect(countOnThat).toEqual(2);
+        e.fireEvent("onThis");
+        expect(countOnThis).toEqual(2);
+      });
     });
   });
 });
