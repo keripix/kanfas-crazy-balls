@@ -1,0 +1,19 @@
+ Priorities:
+ ✔ Deteksi posisi mouse dengan benar @done (13-05-19 03:58)
+ ✔ Memilih objek @done (13-05-19 06:30)
+ ✔ Menggerakkan objek @done (13-05-19 06:30)
+ ✔ Menambahkan objek @done (13-05-19 17:20)
+ ✔ Lingkaran @done (13-06-11 20:00)
+ ☐ Perjelas tanggung jawab kanfas
+ ☐ Dapat melakukan removeListener untuk Event
+ ✔ Unit test (A Must) @done (13-06-15 00:47)
+ ☐ Hapus
+ ☐ Pelajari masalah layer untuk optimasi performa
+ ☐ Animasi
+ ☐ Animasi Fisika
+--- ✄ -----------------------
+  Later:
+ ☐ Memilih objek dengan urutan stack yang benar
+ ☐ Memutar objek
+ ☐ Mengubah ukuran objek
+ ☐ Grouping

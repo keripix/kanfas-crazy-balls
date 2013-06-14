@@ -1,0 +1,19 @@
+body{
+    background-color: #2C3E50;
+}
+
+#foreground, #background{
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    width: 600px;
+    height: 600px;
+}
+
+#foreground{
+    z-index: 1;
+}
+
+#background{
+    z-index: 0;
+}
