@@ -1,7 +1,4 @@
-define([
-  "state"
-  ],
-function(State){
+define(["state"], function(State){
   var state = new State(),
       obj = {x:2};
 

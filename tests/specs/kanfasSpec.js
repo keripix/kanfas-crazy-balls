@@ -1,5 +1,6 @@
 define(["kanfas", "state","shapes/shapefactory"],
 function(Kanfas, State,ShapeFactory){
+  // manually mock
   var canvas = {
     getContext: function(){
       return true;
