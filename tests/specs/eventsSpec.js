@@ -71,5 +71,41 @@ function(Events){
         expect(countOnThat).toEqual(2);
       });
     });
+
+    describe("Finding Event Handlers", function(){
+      beforeEach(function(){
+        e.handlers = {};
+      });
+
+      it("Should remove the handler", function(){
+        e.addSubscriber(fake);
+
+        var handler = e.findListenerPos("onSomething", handlers.onSomething);
+
+        expect(handler).toEqual(0);
+
+        e.addSubscriber(fake2);
+
+        handler = e.findListenerPos("onSomething", handlers.onSomething);
+        expect(handler).toEqual(1);
+      });
+    });
+
+    describe("Removing Event Handlers", function(){
+      beforeEach(function(){
+        e.handlers = {};
+        countOnThat = 0;
+        countOnSomething = 0;
+        countOnThis = 0;
+      });
+
+      it("Should remove the handler", function(){
+        e.addSubscriber(fake);
+        e.addSubscriber(fake2);
+
+        e.off("onSomething", handlers.onSomething);
+        expect(e.handlers.onSomething.length).toEqual(0);
+      });
+    });
   });
 });

@@ -35,6 +35,7 @@ define(function(){
     return this;
   };
 
+  // TODO use arguments object
   Events.prototype.fireEvent = function(eventName, e){
     if (!this.handlers[eventName]){
       return;
@@ -48,25 +49,32 @@ define(function(){
   };
 
   Events.prototype.off = function(eventName, callbackFn){
-    var index = this.findListener(eventName, callbackFn);
-
-    if (index === -1){
+    if (this.handlers[eventName].length === 0) {
       return;
     }
 
-    this.handlers[eventName].splice(index, 1);
+    var eventHandlers = this.handlers[eventName],
+        i = 0;
+
+    this.handlers[eventName] = eventHandlers.filter(function(callback){
+      return (callback.fn !== callbackFn);
+    });
+
     return this;
   };
 
-  Events.prototype.findListener = function(eventName, callbackFn){
-    var length = this.handlers[eventName],
+  Events.prototype.findListenerPos = function(eventName, callbackFn){
+    var eventHandlers = this.handlers[eventName],
+        length = eventHandlers.length,
         index = -1;
 
-    for(var i = length; i>=0;i--){
-      if (this.handlers[eventName][i].fn === callbackFn){
-        index = i;
+    while(length>0){
+      if (eventHandlers[length-1].fn === callbackFn) {
+        index = length-1;
         break;
       }
+
+      length--;
     }
 
     return index;
