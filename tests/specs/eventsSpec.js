@@ -33,6 +33,18 @@ function(Events){
 
         expect(e.handlers.onSomething[0].fn).toEqual(onSomething);
         expect(e.handlers.onSomething[0].scope).toEqual(fake);
+        expect(e.handlers.onSomething.length).toEqual(1);
+
+        expect(e.handlers.hasOwnProperty("onThis")).toBeTruthy();
+        expect(e.handlers.hasOwnProperty("onThat")).toBeTruthy();
+      });
+
+      it("Should add another event handlers properly", function(){
+        e.addSubscriber(fake2);
+
+        expect(e.handlers.onSomething.length).toEqual(2);
+        expect(e.handlers.onSomething[1].fn).toEqual(onSomething);
+        expect(e.handlers.onSomething[1].scope).toEqual(e);
       });
     });
   });
