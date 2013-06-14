@@ -72,25 +72,6 @@ function(Events){
       });
     });
 
-    describe("Finding Event Handlers", function(){
-      beforeEach(function(){
-        e.handlers = {};
-      });
-
-      it("Should remove the handler", function(){
-        e.addSubscriber(fake);
-
-        var handler = e.findListenerPos("onSomething", handlers.onSomething);
-
-        expect(handler).toEqual(0);
-
-        e.addSubscriber(fake2);
-
-        handler = e.findListenerPos("onSomething", handlers.onSomething);
-        expect(handler).toEqual(1);
-      });
-    });
-
     describe("Removing Event Handlers", function(){
       beforeEach(function(){
         e.handlers = {};

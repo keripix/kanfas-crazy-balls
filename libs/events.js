@@ -63,22 +63,5 @@ define(function(){
     return this;
   };
 
-  Events.prototype.findListenerPos = function(eventName, callbackFn){
-    var eventHandlers = this.handlers[eventName],
-        length = eventHandlers.length,
-        index = -1;
-
-    while(length>0){
-      if (eventHandlers[length-1].fn === callbackFn) {
-        index = length-1;
-        break;
-      }
-
-      length--;
-    }
-
-    return index;
-  };
-
   return Events;
 });
