@@ -13,6 +13,10 @@ function(ObjectUtil){
   }
 
   ObjectUtil.addMethods(Kanfas, {
+    setGlobalAlpha: function(value){
+      this.ctx.globalAlpha = value;
+    },
+
     add: function(){
       var args = Array.prototype.slice.call(arguments, 0);
 
@@ -35,9 +39,13 @@ function(ObjectUtil){
     draw: function(){
       var objects = this.state.objects;
 
+      this.ctx.save();
+
       objects.forEach(function(o){
         o.draw(this.ctx);
       }, this);
+
+      this.ctx.restore();
       return this;
     },
 
