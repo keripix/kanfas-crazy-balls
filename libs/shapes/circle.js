@@ -9,7 +9,6 @@ function(Shape, ObjectUtil, MathUtil){
 
   ObjectUtil.addMethods(Circle, {
     draw: function(ctx) {
-      ctx.globalAlpha = this.alpha;
       ctx.beginPath();
       ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2, false);
       ctx.fillStyle = this.fillStyle;

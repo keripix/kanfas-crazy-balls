@@ -39,13 +39,10 @@ function(ObjectUtil){
     draw: function(){
       var objects = this.state.objects;
 
-      this.ctx.save();
-
       objects.forEach(function(o){
         o.draw(this.ctx);
       }, this);
 
-      this.ctx.restore();
       return this;
     },
 

@@ -6,13 +6,14 @@ body{
     position: absolute;
     top: 10px;
     left: 10px;
-    background-color: #ECF0F1;
 }
 
 #foreground{
+    background-color: transparent;
     z-index: 1;
 }
 
 #background{
     z-index: 0;
+    background-color: #ECF0F1;
 }
