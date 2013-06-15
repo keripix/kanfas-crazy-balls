@@ -1,11 +1,13 @@
 body{
     background-color: #2C3E50;
+    margin:0;
+    padding:0;
 }
 
 #foreground, #background{
     position: absolute;
-    top: 10px;
-    left: 10px;
+    top: 0;
+    left: 0;
 }
 
 #foreground{

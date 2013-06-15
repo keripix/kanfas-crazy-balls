@@ -13,10 +13,6 @@ function(ObjectUtil){
   }
 
   ObjectUtil.addMethods(Kanfas, {
-    setGlobalAlpha: function(value){
-      this.ctx.globalAlpha = value;
-    },
-
     add: function(){
       var args = Array.prototype.slice.call(arguments, 0);
 

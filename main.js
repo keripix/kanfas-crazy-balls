@@ -15,56 +15,72 @@ function(Kanfas, State, Circle){
       i = 0,
       j = 0;
 
+  // add background circles
   for(i = 40; i <= 560; i+=80){
     for(j = 40; j <=560; j+=80){
       bgCanvas.add(new Circle({x:i,y:j,radius:30}));
     }
   }
 
-  var moving = new Circle({x:0,y:0,radius:15,fillStyle:"#27AE60"}),
-      dX = 3,
-      dY = 5;
-
-  fgCanvas.add(moving);
-
-  bgCanvas.draw();
-  fgCanvas.draw();
-
+  // pollyfill untuk requestAnimationFrame. Dari Paul Irish
   (function() {
     var lastTime = 0;
     var vendors = ['webkit', 'moz'];
     for(var x = 0; x < vendors.length && !window.requestAnimationFrame; ++x) {
-        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
-        window.cancelAnimationFrame =
-          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+      window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+      window.cancelAnimationFrame =
+        window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
     }
 
-    if (!window.requestAnimationFrame)
-        window.requestAnimationFrame = function(callback, element) {
-            var currTime = new Date().getTime();
-            var timeToCall = Math.max(0, 16 - (currTime - lastTime));
-            var id = window.setTimeout(function() { callback(currTime + timeToCall); },
-              timeToCall);
-            lastTime = currTime + timeToCall;
-            return id;
-        };
+    if (!window.requestAnimationFrame) {
+      window.requestAnimationFrame = function(callback, element) {
+        var currTime = new Date().getTime();
+        var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+        var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+          timeToCall);
+        lastTime = currTime + timeToCall;
+        return id;
+      };
+    }
 
-    if (!window.cancelAnimationFrame)
-        window.cancelAnimationFrame = function(id) {
-            clearTimeout(id);
-        };
+    if (!window.cancelAnimationFrame) {
+      window.cancelAnimationFrame = function(id) {
+        clearTimeout(id);
+      };
+    }
   }());
 
+  var balls = [],
+      bCounter, b;
+
+  for (bCounter=0;bCounter<=25;bCounter++){
+    b = new Circle({x:Math.random()*60,y:Math.random()*60,fillStyle:"#27AE60"});
+    b.dX = Math.random() * 10;
+    b.dY = Math.random() * 10;
+
+    balls.push(b);
+    fgCanvas.add(b);
+  }
+
+  bgCanvas.draw();
+  fgCanvas.draw();
 
   function animate(){
-    moving.setPosition(moving.x + dX, moving.y + dY);
+    var ball,
+        length = balls.length;
 
-    if (moving.x <= 0 || moving.x >= fgCanvas.width){
-      dX *= -1;
-    }
+    while(length--){
+      ball = balls[length];
 
-    if (moving.y <= 0 || moving.y >= fgCanvas.height){
-      dY *= -1;
+      ball.setPosition(ball.x + ball.dX, ball.y + ball.dY);
+
+      if (ball.x <= 0 || ball.x >= fgCanvas.width){
+        ball.dX *= -1;
+      }
+
+      if (ball.y <= 0 || ball.y >= fgCanvas.height){
+        ball.dY *= -1;
+      }
     }
 
     fgCanvas.clear();
