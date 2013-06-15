@@ -54,7 +54,7 @@ function(Kanfas, State, Circle){
       bCounter, b;
 
   for (bCounter=0;bCounter<=25;bCounter++){
-    b = new Circle({x:Math.random()*60,y:Math.random()*60,fillStyle:"#27AE60"});
+    b = new Circle({x:30+Math.random()*60,y:30+Math.random()*60,fillStyle:"#27AE60"});
     b.dX = Math.random() * 10;
     b.dY = Math.random() * 10;
 
@@ -74,11 +74,11 @@ function(Kanfas, State, Circle){
 
       ball.setPosition(ball.x + ball.dX, ball.y + ball.dY);
 
-      if (ball.x <= 0 || ball.x >= fgCanvas.width){
+      if (ball.x <= 30 || ball.x >= fgCanvas.width-30){
         ball.dX *= -1;
       }
 
-      if (ball.y <= 0 || ball.y >= fgCanvas.height){
+      if (ball.y <= 30 || ball.y >= fgCanvas.height-30){
         ball.dY *= -1;
       }
     }
