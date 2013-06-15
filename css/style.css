@@ -4,10 +4,15 @@ body{
     padding:0;
 }
 
+h1{
+    color: white;
+    text-align: center;
+}
+
 #foreground, #background{
     position: absolute;
-    top: 0;
-    left: 0;
+    top: 50px;
+    left: 10px;
 }
 
 #foreground{
